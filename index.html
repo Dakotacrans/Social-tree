@@ -30,7 +30,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.4; }
 
-    /* Top Bar */
+    /* Top Navigation Header */
     header {
       background: var(--primary);
       position: sticky;
@@ -39,18 +39,13 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
     .nav-container {
-      max-width: 1240px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 16px;
-      height: 54px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-    }
-    .nav-left {
-      display: flex;
-      align-items: center;
       gap: 12px;
     }
     .logo {
@@ -58,11 +53,10 @@
       align-items: center;
       gap: 8px;
       color: #fff;
-      text-decoration: none;
       font-weight: 800;
       font-size: 19px;
-      letter-spacing: -0.5px;
       cursor: pointer;
+      text-decoration: none;
     }
     .logo-badge {
       background: #fff;
@@ -76,7 +70,7 @@
       font-size: 18px;
     }
 
-    .nav-center {
+    .nav-tabs {
       display: flex;
       align-items: center;
       gap: 4px;
@@ -86,10 +80,10 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 0 14px;
+      padding: 0 12px;
       height: 100%;
       color: rgba(255,255,255,0.85);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       border-bottom: 4px solid transparent;
@@ -117,34 +111,29 @@
       color: #fff;
       font-size: 13px;
       font-weight: 600;
-      transition: background 0.15s;
     }
     .nav-profile-pill:hover { background: rgba(255,255,255,0.15); }
-    .nav-avatar {
+    .avatar-img-sm {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: #2d5a43;
+      object-fit: cover;
+      border: 1px solid #fff;
+      background: #fff;
+    }
+    .avatar-fallback-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12px;
       border: 1px solid #fff;
     }
-
-    .nav-btn {
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: #fff;
-      padding: 5px 12px;
-      border-radius: 16px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .nav-btn:hover { background: rgba(255,255,255,0.28); }
 
     /* Main Container */
     .app-main {
@@ -166,6 +155,29 @@
       margin-bottom: 16px;
     }
 
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 15px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: #e4e6eb; color: var(--text); }
+    .btn-secondary:hover { background: #d8dadf; }
+    .btn-outline { background: #fff; border-color: var(--border); color: var(--text); }
+    .btn-outline:hover { background: var(--bg); }
+    .btn-sm { padding: 4px 10px; font-size: 12px; }
+
+    /* Composer */
     .composer-top {
       display: flex;
       gap: 12px;
@@ -195,26 +207,6 @@
       gap: 8px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: all 0.15s ease;
-    }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); }
-    .btn-secondary { background: #e4e6eb; color: var(--text); }
-    .btn-secondary:hover { background: #d8dadf; }
-    .btn-outline { background: #fff; border-color: var(--border); color: var(--text); }
-    .btn-outline:hover { background: var(--bg); }
-
     /* Post Card */
     .post-card {
       background: var(--surface);
@@ -242,9 +234,6 @@
     .post-meta-sub {
       font-size: 12px;
       color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
     .post-body {
       padding: 8px 16px 14px;
@@ -253,12 +242,13 @@
     }
     .post-image-box {
       width: 100%;
-      max-height: 400px;
+      max-height: 440px;
       overflow: hidden;
       background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
     .post-image-box img {
       width: 100%;
@@ -328,20 +318,39 @@
       outline: none;
     }
 
-    /* Profile Header */
-    .profile-header-box {
+    /* ================= PROFILE WITH CUSTOM BANNER & PICTURE ================= */
+    .profile-hero {
       background: #fff;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-light);
       overflow: hidden;
       margin-bottom: 16px;
-    }
-    .cover-bar {
-      height: 140px;
-      background: linear-gradient(135deg, #2d5a43, #5a8f76);
       position: relative;
     }
-    .profile-bar {
+    .banner-container {
+      height: 180px;
+      background: linear-gradient(135deg, #2d5a43, #5a8f76);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .banner-overlay-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+    .banner-overlay-btn:hover { background: rgba(0,0,0,0.8); }
+
+    .profile-sub-bar {
       padding: 0 20px 16px;
       position: relative;
       display: flex;
@@ -350,35 +359,138 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-    .profile-avatar-large {
-      margin-top: -50px;
-      width: 100px;
-      height: 100px;
+    .avatar-wrapper {
+      margin-top: -60px;
+      position: relative;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       border: 4px solid #fff;
-      background: #2d5a43;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .avatar-img-lg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .avatar-fallback-lg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--primary);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 800;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .profile-name-area {
+    .avatar-edit-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .avatar-edit-badge:hover { background: var(--bg); }
+
+    .profile-info-text {
       flex: 1;
-      padding-top: 8px;
+      padding-top: 10px;
+      min-width: 200px;
     }
-    .profile-name-area h2 {
+    .profile-info-text h2 {
       font-size: 22px;
       font-weight: 800;
+      line-height: 1.1;
     }
-    .profile-name-area p {
+    .profile-info-text p {
       font-size: 13px;
       color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    /* Modal Backdrop */
+    /* ================= GALLERY & ALBUMS ================= */
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+    }
+    .gallery-item {
+      aspect-ratio: 1/1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #ddd;
+      cursor: pointer;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.2s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .lightbox-modal.open { display: flex; }
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -36px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* Modals */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -398,27 +510,15 @@
       padding: 24px;
       box-shadow: var(--shadow-lg);
       position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
     }
-    .modal-card h3 {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 6px;
-    }
-    .modal-card p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-    .form-group {
-      margin-bottom: 14px;
-    }
+    .form-group { margin-bottom: 14px; }
     .form-group label {
       display: block;
       font-size: 12px;
       font-weight: 700;
       margin-bottom: 4px;
-      color: var(--text);
     }
     .form-control {
       width: 100%;
@@ -430,296 +530,470 @@
     }
     .form-control:focus { border-color: var(--primary); }
 
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--text-muted);
+    .banner-presets {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 8px;
     }
-    .empty-state-icon {
-      font-size: 40px;
-      margin-bottom: 10px;
+    .preset-box {
+      height: 48px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .preset-box:hover { border-color: var(--primary); }
+
+    .empty-box {
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
+  <!-- Hidden File Pickers -->
+  <input type="file" id="profilePicInput" accept="image/*" style="display:none;" onchange="handleProfilePicChange(event)">
+  <input type="file" id="bannerPicInput" accept="image/*" style="display:none;" onchange="handleBannerPicChange(event)">
+  <input type="file" id="galleryUploadInput" accept="image/*" style="display:none;" onchange="handleGalleryUpload(event)">
+  <input type="file" id="postPhotoInput" accept="image/*" style="display:none;" onchange="handlePostPhoto(event)">
+
+  <!-- Top Navigation -->
   <header>
     <div class="nav-container">
-      <div class="nav-left">
-        <div class="logo" onclick="switchTab('feed')">
-          <div class="logo-badge">🌳</div>
-          <span>Social Tree</span>
-        </div>
+      <div class="logo" onclick="switchView('feed')">
+        <div class="logo-badge">🌳</div>
+        <span>Social Tree</span>
       </div>
 
-      <div class="nav-center">
-        <div class="nav-tab active" id="tab-feed" onclick="switchTab('feed')">
+      <div class="nav-tabs">
+        <div class="nav-tab active" id="tab-feed" onclick="switchView('feed')">
           <span>🏠 Feed</span>
         </div>
-        <div class="nav-tab" id="tab-wall" onclick="switchTab('wall')">
+        <div class="nav-tab" id="tab-wall" onclick="switchView('wall')">
           <span>🧱 My Wall</span>
         </div>
-        <div class="nav-tab" id="tab-friends" onclick="switchTab('friends')">
-          <span>👥 Kin & Friends</span>
+        <div class="nav-tab" id="tab-gallery" onclick="switchView('gallery')">
+          <span>🖼️ Gallery</span>
+        </div>
+        <div class="nav-tab" id="tab-kin" onclick="switchView('kin')">
+          <span>👥 Family Circle</span>
         </div>
       </div>
 
       <div class="nav-right">
-        <div class="nav-profile-pill" onclick="switchTab('wall')">
-          <div class="nav-avatar" id="navAvatar">ME</div>
+        <div class="nav-profile-pill" onclick="switchView('wall')">
+          <div id="navAvatarHolder"></div>
           <span id="navName">My Account</span>
         </div>
-        <button class="nav-btn" onclick="openProfileModal()">⚙️ Profile</button>
+        <button class="btn btn-outline btn-sm" onclick="openProfileEditModal()">⚙️ Profile</button>
       </div>
     </div>
   </header>
 
-  <!-- Main View -->
+  <!-- Main View Router -->
   <main class="app-main">
 
-    <!-- ================= 1. NEWS FEED ================= -->
+    <!-- ================= VIEW 1: HOME FEED ================= -->
     <div id="view-feed" class="view-section active">
-      <!-- Composer -->
       <div class="card">
         <div class="composer-top">
-          <div class="nav-avatar" id="feedComposerAvatar">ME</div>
-          <textarea id="feedPostInput" class="composer-input" placeholder="Share a family moment or photo..."></textarea>
+          <div id="feedAvatarHolder"></div>
+          <textarea id="feedPostInput" class="composer-input" placeholder="Share a family memory, story, or milestone..."></textarea>
         </div>
         <div class="composer-bottom">
-          <div style="display:flex; gap:8px;">
-            <button class="btn btn-outline" onclick="attachPhotoTrigger()">📷 Photo</button>
-            <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="handleFileSelect(event)">
-            <span id="attachedPhotoNotice" style="font-size:12px; color:var(--primary); font-weight:600; display:none; align-items:center;">✓ Photo ready</span>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button class="btn btn-outline" onclick="document.getElementById('postPhotoInput').click()">📷 Add Photo</button>
+            <span id="postPhotoNotice" style="font-size:12px; color:var(--primary); font-weight:700; display:none;">✓ Photo ready</span>
           </div>
-          <button class="btn btn-primary" onclick="publishFeedPost()">Share Post</button>
+          <button class="btn btn-primary" onclick="submitFeedPost()">Share Post</button>
         </div>
       </div>
 
-      <!-- Posts List -->
-      <div id="feedPostsList">
-        <!-- Rendered by JS -->
+      <div id="feedList">
+        <!-- Feed Posts -->
       </div>
     </div>
 
-    <!-- ================= 2. THE WALL ================= -->
+    <!-- ================= VIEW 2: PROFILE & THE WALL ================= -->
     <div id="view-wall" class="view-section">
-      <div class="profile-header-box">
-        <div class="cover-bar"></div>
-        <div class="profile-bar">
+      <!-- Profile Hero Banner -->
+      <div class="profile-hero">
+        <div class="banner-container" id="profileBannerArea">
+          <button class="banner-overlay-btn" onclick="openBannerChoiceModal()">📷 Change Banner</button>
+        </div>
+        <div class="profile-sub-bar">
           <div style="display:flex; align-items:flex-end; gap:16px;">
-            <div class="profile-avatar-large" id="wallAvatar">ME</div>
-            <div class="profile-name-area">
-              <h2 id="wallName">My Profile</h2>
-              <p id="wallRoleBio">Family Founder • No test data</p>
+            <div class="avatar-wrapper">
+              <div id="wallAvatarHolder" style="width:100%; height:100%;"></div>
+              <div class="avatar-edit-badge" onclick="document.getElementById('profilePicInput').click()" title="Upload Profile Picture">
+                📷
+              </div>
+            </div>
+            <div class="profile-info-text">
+              <h2 id="wallNameText">My Name</h2>
+              <p id="wallRoleText">Family Member</p>
             </div>
           </div>
-          <button class="btn btn-outline" onclick="openProfileModal()">Edit Info</button>
+          <button class="btn btn-outline btn-sm" onclick="openProfileEditModal()">Edit Profile</button>
         </div>
       </div>
 
-      <!-- Write on Wall -->
+      <!-- Post on Wall -->
       <div class="card">
         <div class="composer-top">
-          <div class="nav-avatar" id="wallComposerAvatar">ME</div>
+          <div id="wallComposerAvatarHolder"></div>
           <textarea id="wallPostInput" class="composer-input" placeholder="Write something on your Wall..."></textarea>
         </div>
         <div class="composer-bottom">
           <div></div>
-          <button class="btn btn-primary" onclick="publishWallPost()">Post to Wall</button>
+          <button class="btn btn-primary" onclick="submitWallPost()">Post to Wall</button>
         </div>
       </div>
 
-      <!-- Wall Posts -->
-      <div id="wallPostsList">
-        <!-- Rendered by JS -->
+      <div id="wallList">
+        <!-- Wall Posts -->
       </div>
     </div>
 
-    <!-- ================= 3. KIN & FRIENDS ================= -->
-    <div id="view-friends" class="view-section">
+    <!-- ================= VIEW 3: PHOTO GALLERY ================= -->
+    <div id="view-gallery" class="view-section">
+      <div class="card">
+        <div class="gallery-header">
+          <div>
+            <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Family Photo Gallery</h3>
+            <p style="font-size:13px; color:var(--text-muted);">High-resolution family memories and albums.</p>
+          </div>
+          <button class="btn btn-primary" onclick="document.getElementById('galleryUploadInput').click()">+ Upload Photos</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGridContainer">
+          <!-- Gallery Items -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEW 4: FAMILY CIRCLE & INVITES ================= -->
+    <div id="view-kin" class="view-section">
       <div class="card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
           <div>
-            <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Family & Friends Circle</h3>
-            <p style="font-size:13px; color:var(--text-muted);">Invite your real relatives and friends to join your private Social Tree.</p>
+            <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Family & Kin Circle</h3>
+            <p style="font-size:13px; color:var(--text-muted);">Invite your relatives so they can visit your tree, write on your wall, and upload photos.</p>
           </div>
-          <button class="btn btn-primary" onclick="openInviteDialog()">+ Invite Kin</button>
+          <button class="btn btn-primary" onclick="shareFamilyLink()">+ Invite Family</button>
         </div>
 
-        <div id="friendsListContainer">
-          <!-- Rendered by JS -->
+        <div id="kinListContainer">
+          <!-- Users -->
         </div>
       </div>
     </div>
 
   </main>
 
-  <!-- ================= EDIT PROFILE / SETUP MODAL ================= -->
-  <div id="profileModal" class="modal-overlay">
+  <!-- Photo Lightbox -->
+  <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightboxImage" src="" alt="Family Memory">
+      <p id="lightboxCaptionText" style="color:#fff; font-size:14px; margin-top:10px; text-align:center;"></p>
+    </div>
+  </div>
+
+  <!-- Profile Edit Modal -->
+  <div id="profileEditModal" class="modal-overlay">
     <div class="modal-card">
-      <h3>Your Family Account</h3>
-      <p>Set up your profile so family members see who is posting.</p>
+      <h3 style="color:var(--primary-dark); font-size:18px; margin-bottom:6px;">Your Profile Details</h3>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Update your name, relationship title, and profile picture.</p>
 
       <div class="form-group">
-        <label>Your Full Name</label>
-        <input type="text" id="inputFullName" class="form-control" placeholder="e.g. Dakota">
+        <label>Full Name</label>
+        <input type="text" id="editNameInput" class="form-control" placeholder="e.g. Dakota">
       </div>
 
       <div class="form-group">
-        <label>Your Role in the Family</label>
-        <input type="text" id="inputFamilyRole" class="form-control" placeholder="e.g. Dad, Mom, Brother, Sister, Founder">
+        <label>Family Role / Kinship Title</label>
+        <input type="text" id="editRoleInput" class="form-control" placeholder="e.g. Dad, Mom, Brother, Sister, Founder">
       </div>
 
       <div class="form-group">
         <label>Short Bio</label>
-        <input type="text" id="inputBio" class="form-control" placeholder="A little note about you...">
+        <input type="text" id="editBioInput" class="form-control" placeholder="A little note about you...">
       </div>
 
       <div style="display:flex; gap:10px; margin-top:20px;">
-        <button class="btn btn-primary" style="flex:1;" onclick="saveProfile()">Save Profile</button>
-        <button class="btn btn-secondary" onclick="closeProfileModal()">Cancel</button>
+        <button class="btn btn-primary" style="flex:1;" onclick="saveProfileChanges()">Save Changes</button>
+        <button class="btn btn-secondary" onclick="closeModal('profileEditModal')">Cancel</button>
       </div>
 
-      <div style="margin-top:20px; border-top:1px solid var(--border-light); padding-top:14px; text-align:center;">
-        <button style="background:none; border:none; color:#c92a2a; font-size:12px; cursor:pointer;" onclick="clearAllData()">
-          🗑️ Clear all saved posts and start fresh
+      <div style="margin-top:20px; border-top:1px solid var(--border-light); padding-top:12px; text-align:center;">
+        <button style="background:none; border:none; color:#c92a2a; font-size:12px; cursor:pointer;" onclick="resetAllAppData()">
+          🗑️ Clear all saved posts and start completely fresh
         </button>
       </div>
     </div>
   </div>
 
-  <!-- JavaScript App Logic (Clean & Persistent) -->
-  <script>
-    // Storage keys
-    const STORAGE_KEY_USER = 'social_tree_my_user';
-    const STORAGE_KEY_POSTS = 'social_tree_my_posts';
-    const STORAGE_KEY_FRIENDS = 'social_tree_my_friends';
+  <!-- Banner Picker Modal -->
+  <div id="bannerChoiceModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3 style="color:var(--primary-dark); font-size:18px; margin-bottom:6px;">Customize Profile Banner</h3>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Upload a custom photo or choose a nature backdrop.</p>
 
-    // State
-    let currentUser = {
+      <button class="btn btn-primary" style="width:100%; margin-bottom:14px;" onclick="document.getElementById('bannerPicInput').click()">
+        📷 Upload Custom Photo Banner
+      </button>
+
+      <label style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Or Choose a Theme:</label>
+      <div class="banner-presets">
+        <div class="preset-box" style="background: linear-gradient(135deg, #2d5a43, #5a8f76);" onclick="selectBannerPreset('linear-gradient(135deg, #2d5a43, #5a8f76)')">Forest</div>
+        <div class="preset-box" style="background: linear-gradient(135deg, #d97757, #e07a5f);" onclick="selectBannerPreset('linear-gradient(135deg, #d97757, #e07a5f)')">Sunset</div>
+        <div class="preset-box" style="background: linear-gradient(135deg, #3b6978, #204051);" onclick="selectBannerPreset('linear-gradient(135deg, #3b6978, #204051)')">Ocean</div>
+        <div class="preset-box" style="background: linear-gradient(135deg, #70587c, #4d3e54);" onclick="selectBannerPreset('linear-gradient(135deg, #70587c, #4d3e54)')">Twilight</div>
+        <div class="preset-box" style="background: linear-gradient(135deg, #b35c44, #87431d);" onclick="selectBannerPreset('linear-gradient(135deg, #b35c44, #87431d)')">Autumn</div>
+        <div class="preset-box" style="background: linear-gradient(135deg, #495057, #212529);" onclick="selectBannerPreset('linear-gradient(135deg, #495057, #212529)')">Slate</div>
+      </div>
+
+      <div style="margin-top:20px; text-align:right;">
+        <button class="btn btn-secondary" onclick="closeModal('bannerChoiceModal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script>
+    const STORAGE_KEY_USER = 'social_tree_user_v2';
+    const STORAGE_KEY_POSTS = 'social_tree_posts_v2';
+    const STORAGE_KEY_GALLERY = 'social_tree_gallery_v2';
+
+    let userState = {
       name: 'Dakota',
       role: 'Family Founder',
       bio: 'Welcome to our private family tree!',
-      avatar: 'D'
+      avatarImage: null, // base64 photo
+      bannerImage: 'linear-gradient(135deg, #2d5a43, #5a8f76)'
     };
 
-    let posts = [];
-    let friends = [];
-    let attachedPhotoData = null;
+    let postItems = [];
+    let galleryPhotos = [];
+    let tempAttachedPostPhoto = null;
 
-    // Load from LocalStorage
-    function initData() {
+    function init() {
       const savedUser = localStorage.getItem(STORAGE_KEY_USER);
       if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-      } else {
-        // First time setup trigger
-        setTimeout(() => {
-          openProfileModal();
-        }, 600);
+        userState = JSON.parse(savedUser);
       }
 
       const savedPosts = localStorage.getItem(STORAGE_KEY_POSTS);
       if (savedPosts) {
-        posts = JSON.parse(savedPosts);
-      } else {
-        posts = [];
+        postItems = JSON.parse(savedPosts);
       }
 
-      const savedFriends = localStorage.getItem(STORAGE_KEY_FRIENDS);
-      if (savedFriends) {
-        friends = JSON.parse(savedFriends);
-      } else {
-        friends = [
-          { name: currentUser.name, role: currentUser.role, initial: currentUser.avatar }
-        ];
+      const savedGallery = localStorage.getItem(STORAGE_KEY_GALLERY);
+      if (savedGallery) {
+        galleryPhotos = JSON.parse(savedGallery);
       }
 
-      updateUI();
+      renderAll();
     }
 
-    function updateUI() {
-      document.getElementById('navName').innerText = currentUser.name;
-      document.getElementById('navAvatar').innerText = currentUser.avatar;
-      document.getElementById('feedComposerAvatar').innerText = currentUser.avatar;
-      document.getElementById('wallComposerAvatar').innerText = currentUser.avatar;
-      document.getElementById('wallAvatar').innerText = currentUser.avatar;
-      document.getElementById('wallName').innerText = currentUser.name;
-      document.getElementById('wallRoleBio').innerText = `${currentUser.role} • ${currentUser.bio}`;
+    function renderAll() {
+      // 1. Navigation & Headers
+      document.getElementById('navName').innerText = userState.name;
+      renderAvatar('navAvatarHolder', 'avatar-img-sm', 'avatar-fallback-sm');
+      renderAvatar('feedAvatarHolder', 'avatar-img-sm', 'avatar-fallback-sm');
+      renderAvatar('wallComposerAvatarHolder', 'avatar-img-sm', 'avatar-fallback-sm');
+      renderAvatar('wallAvatarHolder', 'avatar-img-lg', 'avatar-fallback-lg');
 
-      renderFeed();
-      renderWall();
-      renderFriendsList();
+      document.getElementById('wallNameText').innerText = userState.name;
+      document.getElementById('wallRoleText').innerText = `${userState.role} • ${userState.bio}`;
+
+      // 2. Banner
+      const bannerArea = document.getElementById('profileBannerArea');
+      if (userState.bannerImage.startsWith('data:image') || userState.bannerImage.startsWith('http')) {
+        bannerArea.style.backgroundImage = `url("${userState.bannerImage}")`;
+      } else {
+        bannerArea.style.backgroundImage = userState.bannerImage;
+      }
+
+      // 3. Feeds & Gallery
+      renderFeedStream();
+      renderWallStream();
+      renderGallery();
+      renderKinList();
     }
 
-    // Tab Switcher
-    function switchTab(tabKey) {
+    // Helper: Render Profile Avatar Image or Initial Fallback
+    function renderAvatar(containerId, imgClass, fallbackClass) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+      if (userState.avatarImage) {
+        container.innerHTML = `<img src="${userState.avatarImage}" class="${imgClass}" alt="${userState.name}">`;
+      } else {
+        const initial = (userState.name || 'D').substring(0, 1).toUpperCase();
+        container.innerHTML = `<div class="${fallbackClass}">${initial}</div>`;
+      }
+    }
+
+    // Views
+    function switchView(viewKey) {
       document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
 
-      document.getElementById('view-' + tabKey).classList.add('active');
-      document.getElementById('tab-' + tabKey).classList.add('active');
+      document.getElementById('view-' + viewKey).classList.add('active');
+      document.getElementById('tab-' + viewKey).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Photo selection
-    function attachPhotoTrigger() {
-      document.getElementById('photoFileInput').click();
-    }
-
-    function handleFileSelect(e) {
+    // Handle Profile Picture Upload
+    function handleProfilePicChange(e) {
       const file = e.target.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(evt) {
-        attachedPhotoData = evt.target.result;
-        const notice = document.getElementById('attachedPhotoNotice');
-        notice.style.display = 'inline-flex';
+        userState.avatarImage = evt.target.result;
+        saveUserState();
+        renderAll();
+        alert('Profile picture updated successfully!');
       };
       reader.readAsDataURL(file);
     }
 
-    // Publishing Feed Post
-    function publishFeedPost() {
+    // Handle Banner Upload
+    function handleBannerPicChange(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        userState.bannerImage = evt.target.result;
+        saveUserState();
+        renderAll();
+        closeModal('bannerChoiceModal');
+        alert('Profile banner photo updated!');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function selectBannerPreset(bg) {
+      userState.bannerImage = bg;
+      saveUserState();
+      renderAll();
+      closeModal('bannerChoiceModal');
+    }
+
+    // Handle Gallery Photo Upload
+    function handleGalleryUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const photo = {
+          id: Date.now(),
+          url: evt.target.result,
+          uploadedBy: userState.name,
+          date: 'Just now',
+          caption: 'Family Memory'
+        };
+        galleryPhotos.unshift(photo);
+        localStorage.setItem(STORAGE_KEY_GALLERY, JSON.stringify(galleryPhotos));
+        renderGallery();
+        alert('Photo added to family gallery!');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGridContainer');
+      grid.innerHTML = '';
+
+      if (galleryPhotos.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-box" style="grid-column: 1 / -1;">
+            <div style="font-size:36px; margin-bottom:8px;">🖼️</div>
+            <strong>No photos in the gallery yet</strong>
+            <p style="font-size:13px; margin-top:4px;">Tap "+ Upload Photos" above to start your family archive.</p>
+          </div>
+        `;
+        return;
+      }
+
+      galleryPhotos.forEach(p => {
+        const el = document.createElement('div');
+        el.className = 'gallery-item';
+        el.onclick = () => openLightbox(p.url, p.caption);
+        el.innerHTML = `<img src="${p.url}" alt="${p.caption}">`;
+        grid.appendChild(el);
+      });
+    }
+
+    // Handle Feed & Wall Posting
+    function handlePostPhoto(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        tempAttachedPostPhoto = evt.target.result;
+        document.getElementById('postPhotoNotice').style.display = 'inline';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function submitFeedPost() {
       const input = document.getElementById('feedPostInput');
       const text = input.value.trim();
-
-      if (!text && !attachedPhotoData) {
-        alert('Please write a message or select a photo.');
+      if (!text && !tempAttachedPostPhoto) {
+        alert('Please write something or attach a photo.');
         return;
       }
 
       const newPost = {
         id: Date.now(),
-        author: currentUser.name,
-        role: currentUser.role,
-        initial: currentUser.avatar,
+        author: userState.name,
+        role: userState.role,
+        avatarImg: userState.avatarImage,
         time: 'Just now',
         content: text,
-        image: attachedPhotoData,
+        image: tempAttachedPostPhoto,
         likes: 0,
         comments: [],
-        isWallOnly: false
+        isWall: false
       };
 
-      posts.unshift(newPost);
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
+      postItems.unshift(newPost);
+      if (tempAttachedPostPhoto) {
+        galleryPhotos.unshift({
+          id: Date.now() + 1,
+          url: tempAttachedPostPhoto,
+          uploadedBy: userState.name,
+          date: 'Just now',
+          caption: text || 'Feed Photo'
+        });
+        localStorage.setItem(STORAGE_KEY_GALLERY, JSON.stringify(galleryPhotos));
+        renderGallery();
+      }
 
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
       input.value = '';
-      attachedPhotoData = null;
-      document.getElementById('attachedPhotoNotice').style.display = 'none';
-      renderFeed();
-      renderWall();
+      tempAttachedPostPhoto = null;
+      document.getElementById('postPhotoNotice').style.display = 'none';
+
+      renderFeedStream();
+      renderWallStream();
     }
 
-    // Publishing Wall Post
-    function publishWallPost() {
+    function submitWallPost() {
       const input = document.getElementById('wallPostInput');
       const text = input.value.trim();
-
       if (!text) {
         alert('Please write something on the wall.');
         return;
@@ -727,84 +1001,75 @@
 
       const newPost = {
         id: Date.now(),
-        author: currentUser.name,
-        role: currentUser.role,
-        initial: currentUser.avatar,
+        author: userState.name,
+        role: userState.role,
+        avatarImg: userState.avatarImage,
         time: 'Just now',
         content: text,
         image: null,
         likes: 0,
         comments: [],
-        isWallOnly: true
+        isWall: true
       };
 
-      posts.unshift(newPost);
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
-
+      postItems.unshift(newPost);
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
       input.value = '';
-      renderFeed();
-      renderWall();
+
+      renderFeedStream();
+      renderWallStream();
     }
 
-    // Render Feed
-    function renderFeed() {
-      const container = document.getElementById('feedPostsList');
-      container.innerHTML = '';
+    function renderFeedStream() {
+      const list = document.getElementById('feedList');
+      list.innerHTML = '';
 
-      if (posts.length === 0) {
-        container.innerHTML = `
-          <div class="card empty-state">
-            <div class="empty-state-icon">🌱</div>
-            <h4 style="font-weight:700; font-size:16px;">The Tree is planted!</h4>
-            <p style="font-size:13px; margin-top:4px;">No test posts here. Share the very first family photo or memory above!</p>
+      if (postItems.length === 0) {
+        list.innerHTML = `
+          <div class="card empty-box">
+            <div style="font-size:36px; margin-bottom:8px;">🌱</div>
+            <strong>Your Family Tree is planted!</strong>
+            <p style="font-size:13px; margin-top:4px;">No test posts here. Share the first real moment or photo above!</p>
           </div>
         `;
         return;
       }
 
-      posts.forEach(post => {
-        container.appendChild(createPostCard(post));
-      });
+      postItems.forEach(p => list.appendChild(createPostNode(p)));
     }
 
-    // Render Wall
-    function renderWall() {
-      const container = document.getElementById('wallPostsList');
-      container.innerHTML = '';
+    function renderWallStream() {
+      const list = document.getElementById('wallList');
+      list.innerHTML = '';
 
-      const wallPosts = posts.filter(p => p.isWallOnly || p.author === currentUser.name);
-
+      const wallPosts = postItems.filter(p => p.isWall || p.author === userState.name);
       if (wallPosts.length === 0) {
-        container.innerHTML = `
-          <div class="card empty-state">
-            <div class="empty-state-icon">🧱</div>
-            <h4 style="font-weight:700; font-size:16px;">Your Wall is fresh and clean</h4>
-            <p style="font-size:13px; margin-top:4px;">Posts you or invited family members write will show up here.</p>
+        list.innerHTML = `
+          <div class="card empty-box">
+            <div style="font-size:36px; margin-bottom:8px;">🧱</div>
+            <strong>Your Wall is fresh & clean</strong>
+            <p style="font-size:13px; margin-top:4px;">Posts you and family members leave on your profile will appear here.</p>
           </div>
         `;
         return;
       }
 
-      wallPosts.forEach(post => {
-        container.appendChild(createPostCard(post));
-      });
+      wallPosts.forEach(p => list.appendChild(createPostNode(p)));
     }
 
-    // Create Post Element
-    function createPostCard(post) {
+    function createPostNode(p) {
       const card = document.createElement('div');
       card.className = 'post-card';
 
-      let imgHtml = '';
-      if (post.image) {
-        imgHtml = `
-          <div class="post-image-box">
-            <img src="${post.image}" alt="Family photo">
-          </div>
-        `;
-      }
+      let avHtml = p.avatarImg
+        ? `<img src="${p.avatarImg}" class="avatar-img-sm" alt="${p.author}">`
+        : `<div class="avatar-fallback-sm">${(p.author || 'D')[0].toUpperCase()}</div>`;
 
-      let commentsHtml = (post.comments || []).map(c => `
+      let imgHtml = p.image 
+        ? `<div class="post-image-box" onclick="openLightbox('${p.image}', '${p.content}')"><img src="${p.image}" alt="Post image"></div>` 
+        : '';
+
+      let commentsHtml = (p.comments || []).map(c => `
         <div class="comment-bubble">
           <div class="comment-text-box">
             <span class="comment-user">${c.author}:</span> ${c.text}
@@ -815,126 +1080,139 @@
       card.innerHTML = `
         <div class="post-header">
           <div class="post-user-info">
-            <div class="nav-avatar">${post.initial}</div>
+            ${avHtml}
             <div>
-              <div class="post-user-name">${post.author} <span style="font-size:11px; font-weight:normal; color:var(--primary); background:var(--primary-light); padding:1px 6px; border-radius:10px;">${post.role}</span></div>
-              <div class="post-meta-sub"><span>${post.time}</span> • <span>🔒 Family Only</span></div>
+              <div class="post-user-name">${p.author} <span style="font-size:11px; font-weight:normal; color:var(--primary); background:var(--primary-light); padding:1px 6px; border-radius:10px;">${p.role}</span></div>
+              <div class="post-meta-sub">${p.time} • 🔒 Family Only</div>
             </div>
           </div>
         </div>
 
-        <div class="post-body">${post.content}</div>
+        <div class="post-body">${p.content}</div>
 
         ${imgHtml}
 
         <div class="post-actions-bar">
-          <button class="react-btn" onclick="likePost(${post.id}, this)">❤️ Love (${post.likes || 0})</button>
-          <button class="react-btn" onclick="focusComment(${post.id})">💬 Comment</button>
+          <button class="react-btn" onclick="likePostItem(${p.id}, this)">❤️ Love (${p.likes || 0})</button>
+          <button class="react-btn" onclick="focusCommentInput(${p.id})">💬 Comment</button>
         </div>
 
         <div class="post-comments">
-          <div id="comments-box-${post.id}">
-            ${commentsHtml}
-          </div>
+          <div id="c-list-${p.id}">${commentsHtml}</div>
           <div class="comment-input-wrap">
-            <input type="text" id="comment-in-${post.id}" class="c-input" placeholder="Write a comment..." onkeypress="if(event.key==='Enter')submitComment(${post.id})">
-            <button class="btn btn-primary" style="padding:4px 10px; font-size:12px;" onclick="submitComment(${post.id})">Send</button>
+            <input type="text" id="c-input-${p.id}" class="c-input" placeholder="Write a comment..." onkeypress="if(event.key==='Enter')addCommentItem(${p.id})">
+            <button class="btn btn-primary btn-sm" onclick="addCommentItem(${p.id})">Send</button>
           </div>
         </div>
       `;
       return card;
     }
 
-    function likePost(id, btn) {
-      const p = posts.find(x => x.id === id);
+    function likePostItem(id, btn) {
+      const p = postItems.find(x => x.id === id);
       if (!p) return;
       p.likes = (p.likes || 0) + 1;
       btn.innerText = `❤️ Loved (${p.likes})`;
       btn.classList.add('active');
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
     }
 
-    function focusComment(id) {
-      const el = document.getElementById(`comment-in-${id}`);
-      if (el) el.focus();
+    function focusCommentInput(id) {
+      const input = document.getElementById(`c-input-${id}`);
+      if (input) input.focus();
     }
 
-    function submitComment(id) {
-      const el = document.getElementById(`comment-in-${id}`);
-      const text = el.value.trim();
+    function addCommentItem(id) {
+      const input = document.getElementById(`c-input-${id}`);
+      const text = input.value.trim();
       if (!text) return;
 
-      const p = posts.find(x => x.id === id);
+      const p = postItems.find(x => x.id === id);
       if (!p) return;
 
       if (!p.comments) p.comments = [];
-      p.comments.push({ author: currentUser.name, text: text });
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
+      p.comments.push({ author: userState.name, text: text });
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
 
-      el.value = '';
-      renderFeed();
-      renderWall();
+      input.value = '';
+      renderFeedStream();
+      renderWallStream();
     }
 
-    // Render Friends
-    function renderFriendsList() {
-      const box = document.getElementById('friendsListContainer');
+    function renderKinList() {
+      const box = document.getElementById('kinListContainer');
       box.innerHTML = `
         <div style="display:flex; align-items:center; gap:12px; padding:12px; background:var(--surface-subtle); border-radius:8px; border:1px solid var(--border-light);">
-          <div class="nav-avatar" style="width:44px; height:44px; font-size:16px;">${currentUser.avatar}</div>
           <div>
-            <strong>${currentUser.name}</strong> (You)
-            <div style="font-size:12px; color:var(--text-muted);">${currentUser.role} • Admin</div>
+            ${userState.avatarImage 
+              ? `<img src="${userState.avatarImage}" style="width:44px; height:44px; border-radius:50%; object-fit:cover;">` 
+              : `<div class="avatar-fallback-sm" style="width:44px; height:44px; font-size:16px;">${userState.name[0].toUpperCase()}</div>`}
+          </div>
+          <div>
+            <strong>${userState.name}</strong> (You)
+            <div style="font-size:12px; color:var(--text-muted);">${userState.role} • Admin</div>
           </div>
         </div>
       `;
     }
 
-    function openInviteDialog() {
+    function shareFamilyLink() {
       const url = window.location.href;
-      prompt('Copy this link and text it to your family members to join your Social Tree:', url);
+      prompt('Copy this link and text it to your family members:', url);
+    }
+
+    // Lightbox
+    function openLightbox(url, caption) {
+      document.getElementById('lightboxImage').src = url;
+      document.getElementById('lightboxCaptionText').innerText = caption || '';
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
     }
 
     // Profile Modal
-    function openProfileModal() {
-      document.getElementById('inputFullName').value = currentUser.name;
-      document.getElementById('inputFamilyRole').value = currentUser.role;
-      document.getElementById('inputBio').value = currentUser.bio;
-      document.getElementById('profileModal').classList.add('open');
+    function openProfileEditModal() {
+      document.getElementById('editNameInput').value = userState.name;
+      document.getElementById('editRoleInput').value = userState.role;
+      document.getElementById('editBioInput').value = userState.bio;
+      document.getElementById('profileEditModal').classList.add('open');
     }
 
-    function closeProfileModal() {
-      document.getElementById('profileModal').classList.remove('open');
+    function openBannerChoiceModal() {
+      document.getElementById('bannerChoiceModal').classList.add('open');
     }
 
-    function saveProfile() {
-      const name = document.getElementById('inputFullName').value.trim() || 'My Name';
-      const role = document.getElementById('inputFamilyRole').value.trim() || 'Family Member';
-      const bio = document.getElementById('inputBio').value.trim() || 'Welcome to our tree';
-
-      currentUser = {
-        name: name,
-        role: role,
-        bio: bio,
-        avatar: name.substring(0, 1).toUpperCase()
-      };
-
-      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(currentUser));
-      closeProfileModal();
-      updateUI();
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
     }
 
-    function clearAllData() {
-      if (confirm('Clear all saved posts and reset your Social Tree?')) {
+    function saveProfileChanges() {
+      const n = document.getElementById('editNameInput').value.trim() || 'My Name';
+      const r = document.getElementById('editRoleInput').value.trim() || 'Family Member';
+      const b = document.getElementById('editBioInput').value.trim() || 'Family Tree';
+
+      userState.name = n;
+      userState.role = r;
+      userState.bio = b;
+
+      saveUserState();
+      renderAll();
+      closeModal('profileEditModal');
+    }
+
+    function saveUserState() {
+      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(userState));
+    }
+
+    function resetAllAppData() {
+      if (confirm('Clear all posts and start fresh?')) {
         localStorage.clear();
         location.reload();
       }
     }
 
-    // Init on load
-    window.onload = function() {
-      initData();
-    };
+    window.onload = init;
   </script>
 </body>
 </html>
