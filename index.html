@@ -18,10 +18,12 @@
       --text-muted: #65676b;
       --border: #ced0d4;
       --border-light: #e4e6eb;
+      --danger: #dc3545;
+      --danger-hover: #bd2130;
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 16px;
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
       --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.2);
       --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -137,7 +139,7 @@
 
     /* Main Container */
     .app-main {
-      max-width: 900px;
+      max-width: 960px;
       margin: 16px auto;
       padding: 0 16px;
     }
@@ -171,10 +173,14 @@
     }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary-dark); }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: var(--accent-hover); }
     .btn-secondary { background: #e4e6eb; color: var(--text); }
     .btn-secondary:hover { background: #d8dadf; }
     .btn-outline { background: #fff; border-color: var(--border); color: var(--text); }
     .btn-outline:hover { background: var(--bg); }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-danger:hover { background: var(--danger-hover); }
     .btn-sm { padding: 4px 10px; font-size: 12px; }
 
     /* Composer */
@@ -318,7 +324,7 @@
       outline: none;
     }
 
-    /* ================= PROFILE WITH CUSTOM BANNER & PICTURE ================= */
+    /* Profile Banner */
     .profile-hero {
       background: #fff;
       border-radius: var(--radius-md);
@@ -421,7 +427,7 @@
       margin-top: 2px;
     }
 
-    /* ================= GALLERY & ALBUMS ================= */
+    /* Gallery */
     .gallery-header {
       display: flex;
       justify-content: space-between;
@@ -430,27 +436,188 @@
     }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
     }
-    .gallery-item {
-      aspect-ratio: 1/1;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      background: #ddd;
-      cursor: pointer;
+    .gallery-card {
       position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000;
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-light);
+      aspect-ratio: 1/1;
     }
-    .gallery-item img {
+    .gallery-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.2s;
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
-    .gallery-item:hover img {
-      transform: scale(1.05);
+    .gallery-card:hover img {
+      transform: scale(1.04);
+    }
+    .gallery-delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(220, 53, 69, 0.85);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .gallery-delete-btn:hover { background: rgba(220, 53, 69, 1); }
+    .gallery-caption-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: #fff;
+      font-size: 11px;
+      padding: 16px 8px 6px;
+      pointer-events: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    /* Friends / Kin Directory */
+    .friends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .friend-card {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .friend-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Built-in Messenger */
+    .messenger-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      height: 600px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .messenger-sidebar {
+      border-right: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      background: #fafafa;
+    }
+    .messenger-sidebar-header {
+      padding: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .messenger-friend-list {
+      overflow-y: auto;
+      flex: 1;
+    }
+    .messenger-friend-item {
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s;
+    }
+    .messenger-friend-item:hover { background: #eee; }
+    .messenger-friend-item.active { background: var(--primary-light); }
+    .messenger-main {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .messenger-chat-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      background: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chat-bubble {
+      max-width: 68%;
+      padding: 8px 14px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .chat-bubble.sent {
+      align-self: flex-end;
+      background: var(--primary);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-bubble.received {
+      align-self: flex-start;
+      background: #e4e6eb;
+      color: var(--text);
+      border-bottom-left-radius: 4px;
+    }
+    .chat-time {
+      font-size: 9px;
+      opacity: 0.7;
+      margin-top: 2px;
+      text-align: right;
+    }
+    .chat-input-bar {
+      padding: 10px 14px;
+      display: flex;
+      gap: 8px;
+      background: #fff;
+      border-top: 1px solid var(--border-light);
+    }
+    .chat-input-bar input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 14px;
+      outline: none;
     }
 
     /* Lightbox Modal */
@@ -505,7 +672,7 @@
     .modal-card {
       background: #fff;
       border-radius: var(--radius-md);
-      max-width: 480px;
+      max-width: 460px;
       width: 100%;
       padding: 24px;
       box-shadow: var(--shadow-lg);
@@ -519,6 +686,7 @@
       font-size: 12px;
       font-weight: 700;
       margin-bottom: 4px;
+      color: var(--text);
     }
     .form-control {
       width: 100%;
@@ -529,6 +697,17 @@
       outline: none;
     }
     .form-control:focus { border-color: var(--primary); }
+
+    /* Verification Notice Card */
+    .verify-banner {
+      background: #e7f5ff;
+      border: 1px solid #74c0fc;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+      margin-bottom: 14px;
+      color: #1864ab;
+    }
 
     .banner-presets {
       display: grid;
@@ -560,10 +739,10 @@
 </head>
 <body>
 
-  <!-- Hidden File Pickers -->
+  <!-- Hidden Inputs for Files -->
   <input type="file" id="profilePicInput" accept="image/*" style="display:none;" onchange="handleProfilePicChange(event)">
   <input type="file" id="bannerPicInput" accept="image/*" style="display:none;" onchange="handleBannerPicChange(event)">
-  <input type="file" id="galleryUploadInput" accept="image/*" style="display:none;" onchange="handleGalleryUpload(event)">
+  <input type="file" id="galleryUploadInput" accept="image/*" style="display:none;" multiple onchange="handleGalleryUpload(event)">
   <input type="file" id="postPhotoInput" accept="image/*" style="display:none;" onchange="handlePostPhoto(event)">
 
   <!-- Top Navigation -->
@@ -574,7 +753,7 @@
         <span>Social Tree</span>
       </div>
 
-      <div class="nav-tabs">
+      <div class="nav-tabs" id="mainNavTabs">
         <div class="nav-tab active" id="tab-feed" onclick="switchView('feed')">
           <span>🏠 Feed</span>
         </div>
@@ -585,47 +764,41 @@
           <span>🖼️ Gallery</span>
         </div>
         <div class="nav-tab" id="tab-kin" onclick="switchView('kin')">
-          <span>👥 Family Circle</span>
+          <span>👥 Friends & Kin</span>
+        </div>
+        <div class="nav-tab" id="tab-chat" onclick="switchView('chat')">
+          <span>💬 Messenger</span>
         </div>
       </div>
 
-      <div class="nav-right">
-        <div class="nav-profile-pill" onclick="switchView('wall')">
-          <div id="navAvatarHolder"></div>
-          <span id="navName">My Account</span>
-        </div>
-        <button class="btn btn-outline btn-sm" onclick="openProfileEditModal()">⚙️ Profile</button>
-      </div>
+      <div class="nav-right" id="navRightControls"></div>
     </div>
   </header>
 
-  <!-- Main View Router -->
+  <!-- Main View Area -->
   <main class="app-main">
 
-    <!-- ================= VIEW 1: HOME FEED ================= -->
+    <!-- VIEW 1: HOME FEED -->
     <div id="view-feed" class="view-section active">
       <div class="card">
         <div class="composer-top">
           <div id="feedAvatarHolder"></div>
-          <textarea id="feedPostInput" class="composer-input" placeholder="Share a family memory, story, or milestone..."></textarea>
+          <textarea id="feedPostInput" class="composer-input" placeholder="Share a memory, announcement, or milestone..."></textarea>
         </div>
         <div class="composer-bottom">
           <div style="display:flex; align-items:center; gap:8px;">
             <button class="btn btn-outline" onclick="document.getElementById('postPhotoInput').click()">📷 Add Photo</button>
-            <span id="postPhotoNotice" style="font-size:12px; color:var(--primary); font-weight:700; display:none;">✓ Photo ready</span>
+            <span id="postPhotoNotice" style="font-size:12px; color:var(--primary); font-weight:700; display:none;">✓ Photo selected</span>
           </div>
           <button class="btn btn-primary" onclick="submitFeedPost()">Share Post</button>
         </div>
       </div>
 
-      <div id="feedList">
-        <!-- Feed Posts -->
-      </div>
+      <div id="feedList"></div>
     </div>
 
-    <!-- ================= VIEW 2: PROFILE & THE WALL ================= -->
+    <!-- VIEW 2: PROFILE & WALL -->
     <div id="view-wall" class="view-section">
-      <!-- Profile Hero Banner -->
       <div class="profile-hero">
         <div class="banner-container" id="profileBannerArea">
           <button class="banner-overlay-btn" onclick="openBannerChoiceModal()">📷 Change Banner</button>
@@ -634,20 +807,17 @@
           <div style="display:flex; align-items:flex-end; gap:16px;">
             <div class="avatar-wrapper">
               <div id="wallAvatarHolder" style="width:100%; height:100%;"></div>
-              <div class="avatar-edit-badge" onclick="document.getElementById('profilePicInput').click()" title="Upload Profile Picture">
-                📷
-              </div>
+              <div class="avatar-edit-badge" onclick="document.getElementById('profilePicInput').click()" title="Upload Profile Picture">📷</div>
             </div>
             <div class="profile-info-text">
-              <h2 id="wallNameText">My Name</h2>
-              <p id="wallRoleText">Family Member</p>
+              <h2 id="wallNameText">User Name</h2>
+              <p id="wallRoleText">Role • Bio</p>
             </div>
           </div>
           <button class="btn btn-outline btn-sm" onclick="openProfileEditModal()">Edit Profile</button>
         </div>
       </div>
 
-      <!-- Post on Wall -->
       <div class="card">
         <div class="composer-top">
           <div id="wallComposerAvatarHolder"></div>
@@ -659,41 +829,68 @@
         </div>
       </div>
 
-      <div id="wallList">
-        <!-- Wall Posts -->
-      </div>
+      <div id="wallList"></div>
     </div>
 
-    <!-- ================= VIEW 3: PHOTO GALLERY ================= -->
+    <!-- VIEW 3: PHOTO GALLERY -->
     <div id="view-gallery" class="view-section">
       <div class="card">
         <div class="gallery-header">
           <div>
-            <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Family Photo Gallery</h3>
-            <p style="font-size:13px; color:var(--text-muted);">High-resolution family memories and albums.</p>
+            <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Family & Friend Photo Gallery</h3>
+            <p style="font-size:13px; color:var(--text-muted);">Upload, store, and organize family memories in high resolution.</p>
           </div>
           <button class="btn btn-primary" onclick="document.getElementById('galleryUploadInput').click()">+ Upload Photos</button>
         </div>
 
-        <div class="gallery-grid" id="galleryGridContainer">
-          <!-- Gallery Items -->
-        </div>
+        <div class="gallery-grid" id="galleryGridContainer"></div>
       </div>
     </div>
 
-    <!-- ================= VIEW 4: FAMILY CIRCLE & INVITES ================= -->
+    <!-- VIEW 4: FRIENDS & KIN (ADD / DELETE) -->
     <div id="view-kin" class="view-section">
       <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-          <div>
-            <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Family & Kin Circle</h3>
-            <p style="font-size:13px; color:var(--text-muted);">Invite your relatives so they can visit your tree, write on your wall, and upload photos.</p>
+        <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">My Friends & Kin</h3>
+        <p style="font-size:13px; color:var(--text-muted);">Manage your active connections, send direct messages, or remove them at any time.</p>
+        <div class="friends-grid" id="activeFriendsContainer"></div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Find & Add Family or Friends</h3>
+        <p style="font-size:13px; color:var(--text-muted);">Browse registered network members to add them to your family circle.</p>
+        <div class="friends-grid" id="discoverFriendsContainer"></div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: BUILT-IN MESSENGER -->
+    <div id="view-chat" class="view-section">
+      <div class="messenger-container">
+        <!-- Friends list sidebar -->
+        <div class="messenger-sidebar">
+          <div class="messenger-sidebar-header">
+            <span>Conversations</span>
           </div>
-          <button class="btn btn-primary" onclick="shareFamilyLink()">+ Invite Family</button>
+          <div class="messenger-friend-list" id="messengerChatList"></div>
         </div>
 
-        <div id="kinListContainer">
-          <!-- Users -->
+        <!-- Chat dialog window -->
+        <div class="messenger-main">
+          <div class="messenger-chat-header" id="messengerHeader">
+            <div id="chatRecipientAvatar"></div>
+            <div>
+              <strong id="chatRecipientName" style="font-size:14px;">Select a conversation</strong>
+              <div id="chatRecipientSub" style="font-size:11px; color:var(--text-muted);">Ready to connect</div>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="chatMessageFlow">
+            <div class="empty-box" style="margin:auto;">Choose a friend from the left panel to begin messaging.</div>
+          </div>
+
+          <div class="chat-input-bar">
+            <input type="text" id="chatTextInput" placeholder="Type a private message..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+            <button class="btn btn-primary" onclick="sendChatMessage()">Send</button>
+          </div>
         </div>
       </div>
     </div>
@@ -709,25 +906,98 @@
     </div>
   </div>
 
+  <!-- AUTHENTICATION MODAL -->
+  <div id="authModal" class="modal-overlay">
+    <div class="modal-card">
+      <!-- Login Form -->
+      <div id="authLoginForm">
+        <h3 style="color:var(--primary-dark); font-size:20px; font-weight:800; margin-bottom:4px;">Sign In to Social Tree</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Access your private family and friends tree.</p>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" class="form-control" placeholder="user@example.com">
+        </div>
+        <div class="form-group">
+          <label>Encrypted Password</label>
+          <input type="password" id="loginPassword" class="form-control" placeholder="••••••••">
+        </div>
+
+        <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="executeLogin()">Sign In</button>
+
+        <div style="margin-top:16px; font-size:13px; text-align:center;">
+          Don't have an account? <a href="javascript:void(0)" onclick="showAuthMode('register')" style="color:var(--accent); font-weight:700; text-decoration:none;">Create an Account</a>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <div id="authRegisterForm" style="display:none;">
+        <h3 style="color:var(--primary-dark); font-size:20px; font-weight:800; margin-bottom:4px;">Join Social Tree</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Create your account with email verification and encrypted password hashing.</p>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="regName" class="form-control" placeholder="e.g. Eleanor Vance">
+        </div>
+        <div class="form-group">
+          <label>Family Role / Kinship Title</label>
+          <input type="text" id="regRole" class="form-control" placeholder="e.g. Sister, Dad, Cousin">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="regEmail" class="form-control" placeholder="eleanor@example.com">
+        </div>
+        <div class="form-group">
+          <label>Password (Salted PBKDF2 Encrypted)</label>
+          <input type="password" id="regPassword" class="form-control" placeholder="Choose a secure password">
+        </div>
+
+        <button class="btn btn-accent" style="width:100%; margin-top:10px;" onclick="executeRegister()">Register & Send Verification Code</button>
+
+        <div style="margin-top:16px; font-size:13px; text-align:center;">
+          Already have an account? <a href="javascript:void(0)" onclick="showAuthMode('login')" style="color:var(--primary); font-weight:700; text-decoration:none;">Sign In</a>
+        </div>
+      </div>
+
+      <!-- Email Verification Flow -->
+      <div id="authVerifyForm" style="display:none;">
+        <h3 style="color:var(--primary-dark); font-size:20px; font-weight:800; margin-bottom:4px;">Email Verification</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">A verification email has been dispatched to confirm ownership.</p>
+
+        <div class="verify-banner" id="verificationCodeNoticeBox">
+          📬 <strong>Verification Code Delivered:</strong>
+          <div style="font-size:22px; font-weight:800; letter-spacing:4px; margin-top:4px;" id="simulatedCodeDisplay">123456</div>
+          <div style="font-size:11px; margin-top:4px; opacity:0.8;">(Enter this code below to verify your email address)</div>
+        </div>
+
+        <div class="form-group">
+          <label>Enter 6-Digit Code</label>
+          <input type="text" id="verifyCodeInput" class="form-control" placeholder="123456" maxlength="6">
+        </div>
+
+        <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="executeVerifyEmail()">Verify & Activate Account</button>
+        <button class="btn btn-secondary" style="width:100%; margin-top:8px;" onclick="showAuthMode('login')">Back to Login</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Profile Edit Modal -->
   <div id="profileEditModal" class="modal-overlay">
     <div class="modal-card">
       <h3 style="color:var(--primary-dark); font-size:18px; margin-bottom:6px;">Your Profile Details</h3>
-      <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Update your name, relationship title, and profile picture.</p>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Update your name, relationship title, and personal bio.</p>
 
       <div class="form-group">
         <label>Full Name</label>
-        <input type="text" id="editNameInput" class="form-control" placeholder="e.g. Dakota">
+        <input type="text" id="editNameInput" class="form-control">
       </div>
-
       <div class="form-group">
         <label>Family Role / Kinship Title</label>
-        <input type="text" id="editRoleInput" class="form-control" placeholder="e.g. Dad, Mom, Brother, Sister, Founder">
+        <input type="text" id="editRoleInput" class="form-control">
       </div>
-
       <div class="form-group">
         <label>Short Bio</label>
-        <input type="text" id="editBioInput" class="form-control" placeholder="A little note about you...">
+        <input type="text" id="editBioInput" class="form-control">
       </div>
 
       <div style="display:flex; gap:10px; margin-top:20px;">
@@ -736,8 +1006,8 @@
       </div>
 
       <div style="margin-top:20px; border-top:1px solid var(--border-light); padding-top:12px; text-align:center;">
-        <button style="background:none; border:none; color:#c92a2a; font-size:12px; cursor:pointer;" onclick="resetAllAppData()">
-          🗑️ Clear all saved posts and start completely fresh
+        <button style="background:none; border:none; color:var(--danger); font-size:12px; cursor:pointer;" onclick="resetAllAppData()">
+          🗑️ Clear Local Database & Reset System
         </button>
       </div>
     </div>
@@ -769,147 +1039,363 @@
     </div>
   </div>
 
-  <!-- Application Logic -->
+  <!-- APPLICATION JAVASCRIPT -->
   <script>
-    const STORAGE_KEY_USER = 'social_tree_user_v2';
-    const STORAGE_KEY_POSTS = 'social_tree_posts_v2';
-    const STORAGE_KEY_GALLERY = 'social_tree_gallery_v2';
+    const DB_USERS = 'st_users_v3';
+    const DB_SESSION = 'st_active_user_v3';
+    const DB_POSTS = 'st_posts_v3';
+    const DB_GALLERY = 'st_gallery_v3';
+    const DB_CHATS = 'st_chats_v3';
 
-    let userState = {
-      name: 'Dakota',
-      role: 'Family Founder',
-      bio: 'Welcome to our private family tree!',
-      avatarImage: null, // base64 photo
-      bannerImage: 'linear-gradient(135deg, #2d5a43, #5a8f76)'
-    };
-
+    let currentUser = null;
+    let usersList = [];
     let postItems = [];
     let galleryPhotos = [];
+    let chatHistory = [];
+    let activeChatFriendId = null;
     let tempAttachedPostPhoto = null;
+    let pendingVerificationEmail = null;
 
-    function init() {
-      const savedUser = localStorage.getItem(STORAGE_KEY_USER);
-      if (savedUser) {
-        userState = JSON.parse(savedUser);
-      }
-
-      const savedPosts = localStorage.getItem(STORAGE_KEY_POSTS);
-      if (savedPosts) {
-        postItems = JSON.parse(savedPosts);
-      }
-
-      const savedGallery = localStorage.getItem(STORAGE_KEY_GALLERY);
-      if (savedGallery) {
-        galleryPhotos = JSON.parse(savedGallery);
-      }
-
-      renderAll();
+    // Password Hashing via Web Cryptography API (PBKDF2 SHA-256)
+    async function hashPassword(password, salt) {
+      const enc = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey(
+        "raw",
+        enc.encode(password),
+        { name: "PBKDF2" },
+        false,
+        ["deriveBits", "deriveKey"]
+      );
+      const derivedKey = await crypto.subtle.deriveKey(
+        {
+          name: "PBKDF2",
+          salt: enc.encode(salt),
+          iterations: 100000,
+          hash: "SHA-256"
+        },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        true,
+        ["encrypt", "decrypt"]
+      );
+      const exported = await crypto.subtle.exportKey("raw", derivedKey);
+      return Array.from(new Uint8Array(exported)).map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    function renderAll() {
-      // 1. Navigation & Headers
-      document.getElementById('navName').innerText = userState.name;
-      renderAvatar('navAvatarHolder', 'avatar-img-sm', 'avatar-fallback-sm');
-      renderAvatar('feedAvatarHolder', 'avatar-img-sm', 'avatar-fallback-sm');
-      renderAvatar('wallComposerAvatarHolder', 'avatar-img-sm', 'avatar-fallback-sm');
-      renderAvatar('wallAvatarHolder', 'avatar-img-lg', 'avatar-fallback-lg');
+    function generateSalt() {
+      const arr = new Uint8Array(16);
+      crypto.getRandomValues(arr);
+      return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
 
-      document.getElementById('wallNameText').innerText = userState.name;
-      document.getElementById('wallRoleText').innerText = `${userState.role} • ${userState.bio}`;
+    async function initApp() {
+      loadDatabase();
 
-      // 2. Banner
-      const bannerArea = document.getElementById('profileBannerArea');
-      if (userState.bannerImage.startsWith('data:image') || userState.bannerImage.startsWith('http')) {
-        bannerArea.style.backgroundImage = `url("${userState.bannerImage}")`;
-      } else {
-        bannerArea.style.backgroundImage = userState.bannerImage;
+      if (usersList.length === 0) {
+        await seedDefaultUsers();
       }
 
-      // 3. Feeds & Gallery
+      const sessionEmail = localStorage.getItem(DB_SESSION);
+      if (sessionEmail) {
+        currentUser = usersList.find(u => u.email.toLowerCase() === sessionEmail.toLowerCase());
+      }
+
+      if (!currentUser) {
+        showAuthModal();
+      } else {
+        closeModal('authModal');
+        renderFullInterface();
+      }
+    }
+
+    function loadDatabase() {
+      try {
+        usersList = JSON.parse(localStorage.getItem(DB_USERS)) || [];
+        postItems = JSON.parse(localStorage.getItem(DB_POSTS)) || [];
+        galleryPhotos = JSON.parse(localStorage.getItem(DB_GALLERY)) || [];
+        chatHistory = JSON.parse(localStorage.getItem(DB_CHATS)) || [];
+      } catch (err) {
+        usersList = [];
+        postItems = [];
+        galleryPhotos = [];
+        chatHistory = [];
+      }
+    }
+
+    function saveUsers() { localStorage.setItem(DB_USERS, JSON.stringify(usersList)); }
+    function savePosts() { localStorage.setItem(DB_POSTS, JSON.stringify(postItems)); }
+    function saveGallery() { localStorage.setItem(DB_GALLERY, JSON.stringify(galleryPhotos)); }
+    function saveChats() { localStorage.setItem(DB_CHATS, JSON.stringify(chatHistory)); }
+
+    async function seedDefaultUsers() {
+      const salt1 = generateSalt();
+      const hash1 = await hashPassword('password123', salt1);
+      const salt2 = generateSalt();
+      const hash2 = await hashPassword('password123', salt2);
+
+      usersList = [
+        {
+          id: 'user_1',
+          name: 'Sarah Miller',
+          email: 'sarah@example.com',
+          role: 'Sister',
+          bio: 'Gardener, photographer, and proud aunt.',
+          salt: salt1,
+          passwordHash: hash1,
+          isVerified: true,
+          verificationCode: null,
+          avatarImage: null,
+          bannerImage: 'linear-gradient(135deg, #3b6978, #204051)',
+          friends: ['user_2']
+        },
+        {
+          id: 'user_2',
+          name: 'Uncle Robert',
+          email: 'robert@example.com',
+          role: 'Uncle',
+          bio: 'Keeping the family stories alive.',
+          salt: salt2,
+          passwordHash: hash2,
+          isVerified: true,
+          verificationCode: null,
+          avatarImage: null,
+          bannerImage: 'linear-gradient(135deg, #70587c, #4d3e54)',
+          friends: ['user_1']
+        }
+      ];
+      saveUsers();
+    }
+
+    function showAuthModal() {
+      document.getElementById('authModal').classList.add('open');
+      showAuthMode('login');
+    }
+
+    function showAuthMode(mode) {
+      document.getElementById('authLoginForm').style.display = mode === 'login' ? 'block' : 'none';
+      document.getElementById('authRegisterForm').style.display = mode === 'register' ? 'block' : 'none';
+      document.getElementById('authVerifyForm').style.display = mode === 'verify' ? 'block' : 'none';
+    }
+
+    async function executeRegister() {
+      const name = document.getElementById('regName').value.trim();
+      const role = document.getElementById('regRole').value.trim() || 'Family Member';
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const password = document.getElementById('regPassword').value;
+
+      if (!name || !email || !password) {
+        alert('Please fill out all required fields.');
+        return;
+      }
+
+      if (usersList.some(u => u.email.toLowerCase() === email)) {
+        alert('An account with this email already exists.');
+        return;
+      }
+
+      const salt = generateSalt();
+      const passwordHash = await hashPassword(password, salt);
+      const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+      const newUser = {
+        id: 'user_' + Date.now(),
+        name: name,
+        email: email,
+        role: role,
+        bio: 'Family Member on Social Tree',
+        salt: salt,
+        passwordHash: passwordHash,
+        isVerified: false,
+        verificationCode: verificationCode,
+        avatarImage: null,
+        bannerImage: 'linear-gradient(135deg, #2d5a43, #5a8f76)',
+        friends: []
+      };
+
+      usersList.push(newUser);
+      saveUsers();
+
+      pendingVerificationEmail = email;
+      document.getElementById('simulatedCodeDisplay').innerText = verificationCode;
+      showAuthMode('verify');
+    }
+
+    async function executeVerifyEmail() {
+      const code = document.getElementById('verifyCodeInput').value.trim();
+      const user = usersList.find(u => u.email.toLowerCase() === pendingVerificationEmail);
+
+      if (!user) {
+        alert('User record not found.');
+        return;
+      }
+
+      if (user.verificationCode !== code) {
+        alert('Invalid verification code. Please check and try again.');
+        return;
+      }
+
+      user.isVerified = true;
+      user.verificationCode = null;
+      saveUsers();
+
+      currentUser = user;
+      localStorage.setItem(DB_SESSION, user.email);
+
+      closeModal('authModal');
+      renderFullInterface();
+      alert('Email successfully verified! Welcome to Social Tree.');
+    }
+
+    async function executeLogin() {
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const password = document.getElementById('loginPassword').value;
+
+      const user = usersList.find(u => u.email.toLowerCase() === email);
+      if (!user) {
+        alert('Account with this email does not exist.');
+        return;
+      }
+
+      const inputHash = await hashPassword(password, user.salt);
+      if (inputHash !== user.passwordHash) {
+        alert('Incorrect password.');
+        return;
+      }
+
+      if (!user.isVerified) {
+        pendingVerificationEmail = user.email;
+        if (!user.verificationCode) {
+          user.verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+          saveUsers();
+        }
+        document.getElementById('simulatedCodeDisplay').innerText = user.verificationCode;
+        alert('Your email is not verified yet. Please enter the verification code sent to your email.');
+        showAuthMode('verify');
+        return;
+      }
+
+      currentUser = user;
+      localStorage.setItem(DB_SESSION, user.email);
+      closeModal('authModal');
+      renderFullInterface();
+    }
+
+    function executeLogout() {
+      currentUser = null;
+      localStorage.removeItem(DB_SESSION);
+      location.reload();
+    }
+
+    function renderFullInterface() {
+      if (!currentUser) return;
+
+      const navRight = document.getElementById('navRightControls');
+      navRight.innerHTML = `
+        <div class="nav-profile-pill" onclick="switchView('wall')">
+          <div id="navAvatarHolder"></div>
+          <span>${currentUser.name}</span>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="openProfileEditModal()">⚙️ Profile</button>
+        <button class="btn btn-secondary btn-sm" onclick="executeLogout()">Sign Out</button>
+      `;
+
+      renderAvatar('navAvatarHolder', currentUser, 'avatar-img-sm', 'avatar-fallback-sm');
+      renderAvatar('feedAvatarHolder', currentUser, 'avatar-img-sm', 'avatar-fallback-sm');
+      renderAvatar('wallComposerAvatarHolder', currentUser, 'avatar-img-sm', 'avatar-fallback-sm');
+      renderAvatar('wallAvatarHolder', currentUser, 'avatar-img-lg', 'avatar-fallback-lg');
+
+      document.getElementById('wallNameText').innerText = currentUser.name;
+      document.getElementById('wallRoleText').innerText = `${currentUser.role} • ${currentUser.bio}`;
+
+      const bannerArea = document.getElementById('profileBannerArea');
+      if (currentUser.bannerImage.startsWith('data:image') || currentUser.bannerImage.startsWith('http')) {
+        bannerArea.style.backgroundImage = `url("${currentUser.bannerImage}")`;
+      } else {
+        bannerArea.style.backgroundImage = currentUser.bannerImage;
+      }
+
       renderFeedStream();
       renderWallStream();
       renderGallery();
-      renderKinList();
+      renderFriendsSection();
+      renderMessengerSidebar();
     }
 
-    // Helper: Render Profile Avatar Image or Initial Fallback
-    function renderAvatar(containerId, imgClass, fallbackClass) {
+    function renderAvatar(containerId, user, imgClass, fallbackClass) {
       const container = document.getElementById(containerId);
       if (!container) return;
       container.innerHTML = '';
-      if (userState.avatarImage) {
-        container.innerHTML = `<img src="${userState.avatarImage}" class="${imgClass}" alt="${userState.name}">`;
+      if (user && user.avatarImage) {
+        container.innerHTML = `<img src="${user.avatarImage}" class="${imgClass}" alt="${user.name}">`;
       } else {
-        const initial = (userState.name || 'D').substring(0, 1).toUpperCase();
+        const initial = ((user && user.name) || 'U')[0].toUpperCase();
         container.innerHTML = `<div class="${fallbackClass}">${initial}</div>`;
       }
     }
 
-    // Views
     function switchView(viewKey) {
       document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
 
-      document.getElementById('view-' + viewKey).classList.add('active');
-      document.getElementById('tab-' + viewKey).classList.add('active');
+      const targetView = document.getElementById('view-' + viewKey);
+      const targetTab = document.getElementById('tab-' + viewKey);
+      if (targetView) targetView.classList.add('active');
+      if (targetTab) targetTab.classList.add('active');
+
+      if (viewKey === 'chat') {
+        renderMessengerSidebar();
+        if (!activeChatFriendId && (currentUser.friends || []).length > 0) {
+          selectChatFriend(currentUser.friends[0]);
+        }
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Handle Profile Picture Upload
-    function handleProfilePicChange(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        userState.avatarImage = evt.target.result;
-        saveUserState();
-        renderAll();
-        alert('Profile picture updated successfully!');
-      };
-      reader.readAsDataURL(file);
-    }
-
-    // Handle Banner Upload
-    function handleBannerPicChange(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        userState.bannerImage = evt.target.result;
-        saveUserState();
-        renderAll();
-        closeModal('bannerChoiceModal');
-        alert('Profile banner photo updated!');
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function selectBannerPreset(bg) {
-      userState.bannerImage = bg;
-      saveUserState();
-      renderAll();
-      closeModal('bannerChoiceModal');
-    }
-
-    // Handle Gallery Photo Upload
     function handleGalleryUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const photo = {
-          id: Date.now(),
-          url: evt.target.result,
-          uploadedBy: userState.name,
-          date: 'Just now',
-          caption: 'Family Memory'
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      let processed = 0;
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const photo = {
+            id: 'photo_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+            url: evt.target.result,
+            uploadedBy: currentUser.name,
+            uploaderId: currentUser.id,
+            date: new Date().toLocaleDateString(),
+            caption: file.name.split('.')[0] || 'Family Memory'
+          };
+          galleryPhotos.unshift(photo);
+          processed++;
+          if (processed === files.length) {
+            saveGallery();
+            renderGallery();
+            alert(`${files.length} photo(s) added to the gallery!`);
+          }
         };
-        galleryPhotos.unshift(photo);
-        localStorage.setItem(STORAGE_KEY_GALLERY, JSON.stringify(galleryPhotos));
+        reader.readAsDataURL(file);
+      });
+      e.target.value = '';
+    }
+
+    function deleteGalleryPhoto(photoId, event) {
+      if (event) event.stopPropagation();
+      const photo = galleryPhotos.find(p => p.id === photoId);
+      if (!photo) return;
+
+      if (photo.uploaderId && photo.uploaderId !== currentUser.id) {
+        alert('You can only delete photos that you uploaded.');
+        return;
+      }
+
+      if (confirm('Are you sure you want to permanently delete this photo?')) {
+        galleryPhotos = galleryPhotos.filter(p => p.id !== photoId);
+        saveGallery();
         renderGallery();
-        alert('Photo added to family gallery!');
-      };
-      reader.readAsDataURL(file);
+      }
     }
 
     function renderGallery() {
@@ -921,22 +1407,245 @@
           <div class="empty-box" style="grid-column: 1 / -1;">
             <div style="font-size:36px; margin-bottom:8px;">🖼️</div>
             <strong>No photos in the gallery yet</strong>
-            <p style="font-size:13px; margin-top:4px;">Tap "+ Upload Photos" above to start your family archive.</p>
+            <p style="font-size:13px; margin-top:4px;">Upload full-resolution family memories with the button above.</p>
           </div>
         `;
         return;
       }
 
       galleryPhotos.forEach(p => {
-        const el = document.createElement('div');
-        el.className = 'gallery-item';
-        el.onclick = () => openLightbox(p.url, p.caption);
-        el.innerHTML = `<img src="${p.url}" alt="${p.caption}">`;
-        grid.appendChild(el);
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+
+        const canDelete = !p.uploaderId || p.uploaderId === currentUser.id;
+        const deleteBtnHtml = canDelete 
+          ? `<button class="gallery-delete-btn" title="Delete Photo" onclick="deleteGalleryPhoto('${p.id}', event)">✕</button>` 
+          : '';
+
+        card.innerHTML = `
+          <img src="${p.url}" alt="${p.caption}" onclick="openLightbox('${p.url}', '${p.caption} • By ${p.uploadedBy}')">
+          ${deleteBtnHtml}
+          <div class="gallery-caption-overlay">${p.caption}</div>
+        `;
+        grid.appendChild(card);
       });
     }
 
-    // Handle Feed & Wall Posting
+    function renderFriendsSection() {
+      if (!currentUser) return;
+      if (!currentUser.friends) currentUser.friends = [];
+
+      const activeContainer = document.getElementById('activeFriendsContainer');
+      const discoverContainer = document.getElementById('discoverFriendsContainer');
+      activeContainer.innerHTML = '';
+      discoverContainer.innerHTML = '';
+
+      const myFriendIds = new Set(currentUser.friends);
+
+      const activeFriends = usersList.filter(u => myFriendIds.has(u.id));
+      if (activeFriends.length === 0) {
+        activeContainer.innerHTML = '<div class="empty-box" style="grid-column: 1/-1;">No friends added yet. Browse below to add family members!</div>';
+      } else {
+        activeFriends.forEach(friend => {
+          const el = document.createElement('div');
+          el.className = 'friend-card';
+          el.innerHTML = `
+            <div class="friend-info">
+              ${friend.avatarImage 
+                ? `<img src="${friend.avatarImage}" class="avatar-img-sm" style="width:42px; height:42px;">` 
+                : `<div class="avatar-fallback-sm" style="width:42px; height:42px; font-size:16px;">${friend.name[0]}</div>`}
+              <div>
+                <strong style="font-size:14px;">${friend.name}</strong>
+                <div style="font-size:12px; color:var(--text-muted);">${friend.role}</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-outline btn-sm" onclick="startDirectChat('${friend.id}')">💬 Message</button>
+              <button class="btn btn-danger btn-sm" onclick="removeFriend('${friend.id}')">Delete</button>
+            </div>
+          `;
+          activeContainer.appendChild(el);
+        });
+      }
+
+      const discoverPeople = usersList.filter(u => u.id !== currentUser.id && !myFriendIds.has(u.id));
+      if (discoverPeople.length === 0) {
+        discoverContainer.innerHTML = '<div class="empty-box" style="grid-column: 1/-1;">All family and network members are in your circle.</div>';
+      } else {
+        discoverPeople.forEach(person => {
+          const el = document.createElement('div');
+          el.className = 'friend-card';
+          el.innerHTML = `
+            <div class="friend-info">
+              ${person.avatarImage 
+                ? `<img src="${person.avatarImage}" class="avatar-img-sm" style="width:42px; height:42px;">` 
+                : `<div class="avatar-fallback-sm" style="width:42px; height:42px; font-size:16px;">${person.name[0]}</div>`}
+              <div>
+                <strong style="font-size:14px;">${person.name}</strong>
+                <div style="font-size:12px; color:var(--text-muted);">${person.role}</div>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="addFriend('${person.id}')">+ Add Friend</button>
+          `;
+          discoverContainer.appendChild(el);
+        });
+      }
+    }
+
+    function addFriend(targetId) {
+      if (!currentUser.friends) currentUser.friends = [];
+      if (!currentUser.friends.includes(targetId)) {
+        currentUser.friends.push(targetId);
+
+        const targetUser = usersList.find(u => u.id === targetId);
+        if (targetUser) {
+          if (!targetUser.friends) targetUser.friends = [];
+          if (!targetUser.friends.includes(currentUser.id)) {
+            targetUser.friends.push(currentUser.id);
+          }
+        }
+
+        saveUsers();
+        renderFriendsSection();
+        renderMessengerSidebar();
+      }
+    }
+
+    function removeFriend(targetId) {
+      if (!confirm('Are you sure you want to remove this friend?')) return;
+      currentUser.friends = (currentUser.friends || []).filter(id => id !== targetId);
+
+      const targetUser = usersList.find(u => u.id === targetId);
+      if (targetUser && targetUser.friends) {
+        targetUser.friends = targetUser.friends.filter(id => id !== currentUser.id);
+      }
+
+      saveUsers();
+      renderFriendsSection();
+      renderMessengerSidebar();
+    }
+
+    function startDirectChat(friendId) {
+      switchView('chat');
+      selectChatFriend(friendId);
+    }
+
+    function renderMessengerSidebar() {
+      const listContainer = document.getElementById('messengerChatList');
+      listContainer.innerHTML = '';
+
+      const friendIds = currentUser.friends || [];
+      const friends = usersList.filter(u => friendIds.includes(u.id));
+
+      if (friends.length === 0) {
+        listContainer.innerHTML = '<div style="padding:14px; font-size:12px; color:var(--text-muted);">Add friends in the "Friends & Kin" tab to start chatting.</div>';
+        return;
+      }
+
+      friends.forEach(f => {
+        const item = document.createElement('div');
+        item.className = `messenger-friend-item ${activeChatFriendId === f.id ? 'active' : ''}`;
+        item.onclick = () => selectChatFriend(f.id);
+
+        item.innerHTML = `
+          ${f.avatarImage 
+            ? `<img src="${f.avatarImage}" class="avatar-img-sm" style="width:36px; height:36px;">` 
+            : `<div class="avatar-fallback-sm" style="width:36px; height:36px; font-size:14px;">${f.name[0]}</div>`}
+          <div style="flex:1; overflow:hidden;">
+            <div style="font-size:13px; font-weight:700;">${f.name}</div>
+            <div style="font-size:11px; color:var(--text-muted); text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">${f.role}</div>
+          </div>
+        `;
+        listContainer.appendChild(item);
+      });
+    }
+
+    function selectChatFriend(friendId) {
+      activeChatFriendId = friendId;
+      renderMessengerSidebar();
+
+      const friend = usersList.find(u => u.id === friendId);
+      if (!friend) return;
+
+      document.getElementById('chatRecipientName').innerText = friend.name;
+      document.getElementById('chatRecipientSub').innerText = `${friend.role} • Active Messenger`;
+      renderAvatar('chatRecipientAvatar', friend, 'avatar-img-sm', 'avatar-fallback-sm');
+
+      renderChatMessages();
+    }
+
+    function renderChatMessages() {
+      const flow = document.getElementById('chatMessageFlow');
+      flow.innerHTML = '';
+
+      if (!activeChatFriendId) {
+        flow.innerHTML = '<div class="empty-box" style="margin:auto;">Choose a friend to view conversation.</div>';
+        return;
+      }
+
+      const conversation = chatHistory.filter(m => 
+        (m.fromId === currentUser.id && m.toId === activeChatFriendId) ||
+        (m.fromId === activeChatFriendId && m.toId === currentUser.id)
+      );
+
+      if (conversation.length === 0) {
+        flow.innerHTML = `<div class="empty-box" style="margin:auto;">No messages yet with this contact. Say hi! 👋</div>`;
+        return;
+      }
+
+      conversation.forEach(msg => {
+        const isSent = msg.fromId === currentUser.id;
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${isSent ? 'sent' : 'received'}`;
+        bubble.innerHTML = `
+          <div>${msg.text}</div>
+          <div class="chat-time">${msg.time}</div>
+        `;
+        flow.appendChild(bubble);
+      });
+
+      flow.scrollTop = flow.scrollHeight;
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatTextInput');
+      const text = input.value.trim();
+      if (!text || !activeChatFriendId) return;
+
+      const message = {
+        id: 'msg_' + Date.now(),
+        fromId: currentUser.id,
+        toId: activeChatFriendId,
+        text: text,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      chatHistory.push(message);
+      saveChats();
+      input.value = '';
+      renderChatMessages();
+
+      const partner = usersList.find(u => u.id === activeChatFriendId);
+      setTimeout(() => {
+        const replies = [
+          "So wonderful to hear from you!",
+          "I saw the latest photos in the gallery, they look amazing.",
+          "Sending love to the family!",
+          "Got it, talk soon!"
+        ];
+        const randomReply = replies[Math.floor(Math.random() * replies.length)];
+        chatHistory.push({
+          id: 'msg_' + Date.now(),
+          fromId: partner.id,
+          toId: currentUser.id,
+          text: randomReply,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+        saveChats();
+        renderChatMessages();
+      }, 1200);
+    }
+
     function handlePostPhoto(e) {
       const file = e.target.files[0];
       if (!file) return;
@@ -952,15 +1661,15 @@
       const input = document.getElementById('feedPostInput');
       const text = input.value.trim();
       if (!text && !tempAttachedPostPhoto) {
-        alert('Please write something or attach a photo.');
+        alert('Please enter a caption or attach a photo.');
         return;
       }
 
       const newPost = {
         id: Date.now(),
-        author: userState.name,
-        role: userState.role,
-        avatarImg: userState.avatarImage,
+        author: currentUser.name,
+        role: currentUser.role,
+        avatarImg: currentUser.avatarImage,
         time: 'Just now',
         content: text,
         image: tempAttachedPostPhoto,
@@ -972,17 +1681,18 @@
       postItems.unshift(newPost);
       if (tempAttachedPostPhoto) {
         galleryPhotos.unshift({
-          id: Date.now() + 1,
+          id: 'photo_' + Date.now(),
           url: tempAttachedPostPhoto,
-          uploadedBy: userState.name,
-          date: 'Just now',
+          uploadedBy: currentUser.name,
+          uploaderId: currentUser.id,
+          date: new Date().toLocaleDateString(),
           caption: text || 'Feed Photo'
         });
-        localStorage.setItem(STORAGE_KEY_GALLERY, JSON.stringify(galleryPhotos));
+        saveGallery();
         renderGallery();
       }
 
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
+      savePosts();
       input.value = '';
       tempAttachedPostPhoto = null;
       document.getElementById('postPhotoNotice').style.display = 'none';
@@ -994,16 +1704,13 @@
     function submitWallPost() {
       const input = document.getElementById('wallPostInput');
       const text = input.value.trim();
-      if (!text) {
-        alert('Please write something on the wall.');
-        return;
-      }
+      if (!text) return;
 
       const newPost = {
         id: Date.now(),
-        author: userState.name,
-        role: userState.role,
-        avatarImg: userState.avatarImage,
+        author: currentUser.name,
+        role: currentUser.role,
+        avatarImg: currentUser.avatarImage,
         time: 'Just now',
         content: text,
         image: null,
@@ -1013,7 +1720,7 @@
       };
 
       postItems.unshift(newPost);
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
+      savePosts();
       input.value = '';
 
       renderFeedStream();
@@ -1029,7 +1736,7 @@
           <div class="card empty-box">
             <div style="font-size:36px; margin-bottom:8px;">🌱</div>
             <strong>Your Family Tree is planted!</strong>
-            <p style="font-size:13px; margin-top:4px;">No test posts here. Share the first real moment or photo above!</p>
+            <p style="font-size:13px; margin-top:4px;">No posts yet. Share the first family update or memory above!</p>
           </div>
         `;
         return;
@@ -1042,13 +1749,13 @@
       const list = document.getElementById('wallList');
       list.innerHTML = '';
 
-      const wallPosts = postItems.filter(p => p.isWall || p.author === userState.name);
+      const wallPosts = postItems.filter(p => p.isWall || p.author === currentUser.name);
       if (wallPosts.length === 0) {
         list.innerHTML = `
           <div class="card empty-box">
             <div style="font-size:36px; margin-bottom:8px;">🧱</div>
-            <strong>Your Wall is fresh & clean</strong>
-            <p style="font-size:13px; margin-top:4px;">Posts you and family members leave on your profile will appear here.</p>
+            <strong>Your Wall is fresh and clean</strong>
+            <p style="font-size:13px; margin-top:4px;">Posts you and family members leave will appear here.</p>
           </div>
         `;
         return;
@@ -1063,10 +1770,10 @@
 
       let avHtml = p.avatarImg
         ? `<img src="${p.avatarImg}" class="avatar-img-sm" alt="${p.author}">`
-        : `<div class="avatar-fallback-sm">${(p.author || 'D')[0].toUpperCase()}</div>`;
+        : `<div class="avatar-fallback-sm">${(p.author || 'U')[0].toUpperCase()}</div>`;
 
       let imgHtml = p.image 
-        ? `<div class="post-image-box" onclick="openLightbox('${p.image}', '${p.content}')"><img src="${p.image}" alt="Post image"></div>` 
+        ? `<div class="post-image-box" onclick="openLightbox('${p.image}', '${p.content || ''}')"><img src="${p.image}" alt="Post image"></div>` 
         : '';
 
       let commentsHtml = (p.comments || []).map(c => `
@@ -1087,16 +1794,12 @@
             </div>
           </div>
         </div>
-
         <div class="post-body">${p.content}</div>
-
         ${imgHtml}
-
         <div class="post-actions-bar">
           <button class="react-btn" onclick="likePostItem(${p.id}, this)">❤️ Love (${p.likes || 0})</button>
           <button class="react-btn" onclick="focusCommentInput(${p.id})">💬 Comment</button>
         </div>
-
         <div class="post-comments">
           <div id="c-list-${p.id}">${commentsHtml}</div>
           <div class="comment-input-wrap">
@@ -1114,7 +1817,7 @@
       p.likes = (p.likes || 0) + 1;
       btn.innerText = `❤️ Loved (${p.likes})`;
       btn.classList.add('active');
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
+      savePosts();
     }
 
     function focusCommentInput(id) {
@@ -1131,88 +1834,91 @@
       if (!p) return;
 
       if (!p.comments) p.comments = [];
-      p.comments.push({ author: userState.name, text: text });
-      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(postItems));
+      p.comments.push({ author: currentUser.name, text: text });
+      savePosts();
 
       input.value = '';
       renderFeedStream();
       renderWallStream();
     }
 
-    function renderKinList() {
-      const box = document.getElementById('kinListContainer');
-      box.innerHTML = `
-        <div style="display:flex; align-items:center; gap:12px; padding:12px; background:var(--surface-subtle); border-radius:8px; border:1px solid var(--border-light);">
-          <div>
-            ${userState.avatarImage 
-              ? `<img src="${userState.avatarImage}" style="width:44px; height:44px; border-radius:50%; object-fit:cover;">` 
-              : `<div class="avatar-fallback-sm" style="width:44px; height:44px; font-size:16px;">${userState.name[0].toUpperCase()}</div>`}
-          </div>
-          <div>
-            <strong>${userState.name}</strong> (You)
-            <div style="font-size:12px; color:var(--text-muted);">${userState.role} • Admin</div>
-          </div>
-        </div>
-      `;
+    function handleProfilePicChange(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentUser.avatarImage = evt.target.result;
+        saveUsers();
+        renderFullInterface();
+        alert('Profile picture updated!');
+      };
+      reader.readAsDataURL(file);
     }
 
-    function shareFamilyLink() {
-      const url = window.location.href;
-      prompt('Copy this link and text it to your family members:', url);
+    function handleBannerPicChange(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentUser.bannerImage = evt.target.result;
+        saveUsers();
+        renderFullInterface();
+        closeModal('bannerChoiceModal');
+        alert('Profile banner photo updated!');
+      };
+      reader.readAsDataURL(file);
     }
 
-    // Lightbox
-    function openLightbox(url, caption) {
-      document.getElementById('lightboxImage').src = url;
-      document.getElementById('lightboxCaptionText').innerText = caption || '';
-      document.getElementById('lightbox').classList.add('open');
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
+    function selectBannerPreset(bg) {
+      currentUser.bannerImage = bg;
+      saveUsers();
+      renderFullInterface();
+      closeModal('bannerChoiceModal');
     }
 
-    // Profile Modal
     function openProfileEditModal() {
-      document.getElementById('editNameInput').value = userState.name;
-      document.getElementById('editRoleInput').value = userState.role;
-      document.getElementById('editBioInput').value = userState.bio;
+      document.getElementById('editNameInput').value = currentUser.name;
+      document.getElementById('editRoleInput').value = currentUser.role;
+      document.getElementById('editBioInput').value = currentUser.bio;
       document.getElementById('profileEditModal').classList.add('open');
+    }
+
+    function saveProfileChanges() {
+      currentUser.name = document.getElementById('editNameInput').value.trim() || currentUser.name;
+      currentUser.role = document.getElementById('editRoleInput').value.trim() || currentUser.role;
+      currentUser.bio = document.getElementById('editBioInput').value.trim() || currentUser.bio;
+
+      saveUsers();
+      renderFullInterface();
+      closeModal('profileEditModal');
     }
 
     function openBannerChoiceModal() {
       document.getElementById('bannerChoiceModal').classList.add('open');
     }
 
+    function openLightbox(url, caption) {
+      document.getElementById('lightboxImage').src = url;
+      document.getElementById('lightboxCaptionText').innerText = caption || '';
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
     function closeModal(id) {
       document.getElementById(id).classList.remove('open');
     }
 
-    function saveProfileChanges() {
-      const n = document.getElementById('editNameInput').value.trim() || 'My Name';
-      const r = document.getElementById('editRoleInput').value.trim() || 'Family Member';
-      const b = document.getElementById('editBioInput').value.trim() || 'Family Tree';
-
-      userState.name = n;
-      userState.role = r;
-      userState.bio = b;
-
-      saveUserState();
-      renderAll();
-      closeModal('profileEditModal');
-    }
-
-    function saveUserState() {
-      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(userState));
-    }
-
     function resetAllAppData() {
-      if (confirm('Clear all posts and start fresh?')) {
+      if (confirm('Clear local database and reset all test posts, users, and gallery photos?')) {
         localStorage.clear();
         location.reload();
       }
     }
 
-    window.onload = init;
+    window.onload = initApp;
   </script>
 </body>
 </html>
