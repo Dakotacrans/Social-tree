@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Social Tree — Classic Family & Friends Social Network</title>
+  <title>Social Tree — Private Family & Friends Network</title>
   <style>
     :root {
       --primary: #2d5a43;
@@ -30,7 +30,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.4; }
 
-    /* Classic Blue-Green Top Navigation Bar */
+    /* Top Bar */
     header {
       background: var(--primary);
       position: sticky;
@@ -46,7 +46,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
     .nav-left {
       display: flex;
@@ -60,7 +60,7 @@
       color: #fff;
       text-decoration: none;
       font-weight: 800;
-      font-size: 20px;
+      font-size: 19px;
       letter-spacing: -0.5px;
       cursor: pointer;
     }
@@ -75,30 +75,6 @@
       justify-content: center;
       font-size: 18px;
     }
-    .search-box {
-      position: relative;
-      width: 240px;
-    }
-    .search-input {
-      width: 100%;
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 20px;
-      padding: 6px 14px 6px 32px;
-      color: #fff;
-      font-size: 13px;
-      outline: none;
-    }
-    .search-input::placeholder { color: rgba(255,255,255,0.7); }
-    .search-input:focus { background: #fff; color: var(--text); }
-    .search-icon {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(255,255,255,0.8);
-      font-size: 12px;
-    }
 
     .nav-center {
       display: flex;
@@ -110,7 +86,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 0 16px;
+      padding: 0 14px;
       height: 100%;
       color: rgba(255,255,255,0.85);
       font-size: 14px;
@@ -145,111 +121,51 @@
     }
     .nav-profile-pill:hover { background: rgba(255,255,255,0.15); }
     .nav-avatar {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: #df8a48;
+      background: #2d5a43;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 13px;
       border: 1px solid #fff;
     }
 
-    .nav-icon-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+    .nav-btn {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
-      position: relative;
-      border: none;
-      font-size: 15px;
     }
-    .nav-icon-btn:hover { background: rgba(255,255,255,0.25); }
-    .badge {
-      position: absolute;
-      top: -3px;
-      right: -3px;
-      background: #e41e3f;
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 1px 5px;
-      border-radius: 10px;
-      border: 2px solid var(--primary);
-    }
+    .nav-btn:hover { background: rgba(255,255,255,0.28); }
 
     /* Main Container */
     .app-main {
-      max-width: 1200px;
+      max-width: 900px;
       margin: 16px auto;
       padding: 0 16px;
     }
 
-    /* View Sections */
     .view-section { display: none; }
     .view-section.active { display: block; }
 
-    /* Classic Three-Column Feed Layout */
-    .feed-layout {
-      display: grid;
-      grid-template-columns: 240px 1fr 280px;
-      gap: 20px;
-      align-items: start;
-    }
-
-    /* Left Sidebar */
-    .left-sidebar {
-      background: var(--surface);
-      border-radius: var(--radius-md);
-      padding: 12px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border-light);
-    }
-    .side-menu-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 9px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .side-menu-item:hover { background: var(--bg); color: var(--primary); }
-    .side-menu-item.active { background: var(--primary-light); color: var(--primary); }
-    .side-menu-badge {
-      margin-left: auto;
-      font-size: 11px;
-      background: var(--border-light);
-      padding: 2px 7px;
-      border-radius: 10px;
-      color: var(--text-muted);
-    }
-
-    /* Main Center Feed */
-    .center-col {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* Create Post Card */
+    /* Cards */
     .card {
       background: var(--surface);
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-light);
-      padding: 14px 16px;
+      padding: 16px;
+      margin-bottom: 16px;
     }
+
     .composer-top {
       display: flex;
       gap: 12px;
@@ -264,7 +180,7 @@
       font-family: inherit;
       font-size: 14px;
       resize: vertical;
-      min-height: 65px;
+      min-height: 70px;
       outline: none;
       background: #fafafa;
     }
@@ -278,12 +194,13 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 7px 16px;
+      padding: 8px 16px;
       font-size: 13px;
       font-weight: 600;
       border-radius: var(--radius-sm);
@@ -320,15 +237,7 @@
     .post-user-name {
       font-size: 14px;
       font-weight: 700;
-      cursor: pointer;
       color: var(--text);
-    }
-    .post-user-name:hover { text-decoration: underline; }
-    .wall-arrow {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin: 0 4px;
-      font-weight: normal;
     }
     .post-meta-sub {
       font-size: 12px;
@@ -342,35 +251,26 @@
       font-size: 14px;
       line-height: 1.5;
     }
-    .post-image-container {
+    .post-image-box {
       width: 100%;
-      max-height: 440px;
+      max-height: 400px;
       overflow: hidden;
-      cursor: pointer;
-      background: #111;
+      background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .post-image-container img {
+    .post-image-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    .post-stats-row {
-      padding: 8px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-light);
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .post-reactions-bar {
-      padding: 4px 16px;
+    .post-actions-bar {
+      padding: 6px 16px;
       display: flex;
       align-items: center;
       justify-content: space-around;
+      border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
     }
     .react-btn {
@@ -391,7 +291,6 @@
     .react-btn:hover { background: var(--bg); }
     .react-btn.active { color: var(--accent); }
 
-    /* Comments Section */
     .post-comments {
       padding: 12px 16px;
       background: #fdfdfd;
@@ -413,7 +312,6 @@
     .comment-user {
       font-weight: 700;
       color: var(--primary-dark);
-      cursor: pointer;
     }
     .comment-input-wrap {
       display: flex;
@@ -430,64 +328,32 @@
       outline: none;
     }
 
-    /* Right Sidebar Widgets */
-    .right-sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .widget-box {
-      background: var(--surface);
+    /* Profile Header */
+    .profile-header-box {
+      background: #fff;
       border-radius: var(--radius-md);
-      padding: 14px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border-light);
-    }
-    .widget-head {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    /* ================= CLASSIC PROFILE & WALL VIEW ================= */
-    .profile-container {
-      background: var(--surface);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-light);
       overflow: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    .cover-photo-wrapper {
-      height: 240px;
+    .cover-bar {
+      height: 140px;
       background: linear-gradient(135deg, #2d5a43, #5a8f76);
       position: relative;
     }
-    .cover-photo-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .profile-header-bar {
-      padding: 0 24px;
+    .profile-bar {
+      padding: 0 20px 16px;
       position: relative;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      height: 70px;
-      border-bottom: 1px solid var(--border-light);
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .profile-avatar-big {
-      position: absolute;
-      top: -70px;
-      left: 24px;
-      width: 130px;
-      height: 130px;
+    .profile-avatar-large {
+      margin-top: -50px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       border: 4px solid #fff;
       background: #2d5a43;
@@ -495,247 +361,84 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 42px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 800;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .profile-name-area {
-      margin-left: 150px;
-      padding-bottom: 12px;
+      flex: 1;
+      padding-top: 8px;
     }
     .profile-name-area h2 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
-      line-height: 1.1;
     }
-    .profile-name-area span {
+    .profile-name-area p {
       font-size: 13px;
       color: var(--text-muted);
     }
-    .profile-actions {
-      padding-bottom: 12px;
-      display: flex;
-      gap: 8px;
-    }
 
-    .profile-nav-tabs {
-      display: flex;
-      padding: 0 24px;
-      border-bottom: 1px solid var(--border-light);
-      background: #fafafa;
-    }
-    .p-tab {
-      padding: 12px 18px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-    }
-    .p-tab:hover { color: var(--primary); }
-    .p-tab.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-      background: #fff;
-    }
-
-    .profile-grid {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    /* About Info Box */
-    .about-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      margin-bottom: 10px;
-      color: var(--text);
-    }
-
-    /* ================= PHOTOS & ALBUMS VIEW ================= */
-    .photos-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .albums-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
-    }
-    .album-card {
-      background: var(--surface);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .album-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .album-cover {
-      height: 180px;
-      background: #ddd;
-      overflow: hidden;
-    }
-    .album-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .album-info {
-      padding: 12px 14px;
-    }
-    .album-title {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .album-count {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* Photo Lightbox Modal (Classic Theater View) */
-    .lightbox-backdrop {
+    /* Modal Backdrop */
+    .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.6);
       z-index: 2000;
       align-items: center;
       justify-content: center;
+      padding: 16px;
     }
-    .lightbox-backdrop.open { display: flex; }
-    .lightbox-container {
-      width: 95vw;
-      height: 90vh;
-      background: #000;
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .lightbox-stage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      background: #050505;
-    }
-    .lightbox-stage img {
-      max-width: 95%;
-      max-height: 85vh;
-      object-fit: contain;
-    }
-    .lightbox-sidebar {
+    .modal-overlay.open { display: flex; }
+    .modal-card {
       background: #fff;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      overflow-y: auto;
-      padding: 20px;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(255,255,255,0.2);
-      color: #fff;
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    /* ================= FRIENDS & REQUESTS VIEW ================= */
-    .friends-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .friend-card {
-      background: var(--surface);
       border-radius: var(--radius-md);
-      border: 1px solid var(--border-light);
-      padding: 14px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      box-shadow: var(--shadow-sm);
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
     }
-    .friend-meta h4 {
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
+    .modal-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
     }
-    .friend-meta span {
+    .modal-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
       font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .form-control {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 14px;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--primary); }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
       color: var(--text-muted);
     }
-    .friend-relation-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 1px 7px;
-      border-radius: 10px;
-      margin-top: 4px;
-    }
-
-    /* Dropdown Menus (Notifications, Messages) */
-    .dropdown-panel {
-      display: none;
-      position: absolute;
-      top: 56px;
-      right: 16px;
-      width: 320px;
-      background: #fff;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border-light);
-      z-index: 1050;
-      overflow: hidden;
-    }
-    .dropdown-panel.open { display: block; }
-    .dropdown-header {
-      padding: 12px 16px;
-      font-size: 14px;
-      font-weight: 700;
-      border-bottom: 1px solid var(--border-light);
-      display: flex;
-      justify-content: space-between;
-    }
-    .dropdown-item {
-      padding: 10px 14px;
-      display: flex;
-      gap: 10px;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border-light);
-      cursor: pointer;
-    }
-    .dropdown-item:hover { background: var(--bg); }
-    .dropdown-item.unread { background: #f0f7f3; }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .feed-layout { grid-template-columns: 1fr; }
-      .profile-grid { grid-template-columns: 1fr; }
-      .left-sidebar, .right-sidebar { display: none; }
-      .lightbox-container { grid-template-columns: 1fr; }
-      .lightbox-sidebar { display: none; }
+    .empty-state-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -745,672 +448,366 @@
   <header>
     <div class="nav-container">
       <div class="nav-left">
-        <div class="logo" onclick="switchNav('feed')">
+        <div class="logo" onclick="switchTab('feed')">
           <div class="logo-badge">🌳</div>
           <span>Social Tree</span>
-        </div>
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" class="search-input" placeholder="Search friends & family...">
         </div>
       </div>
 
       <div class="nav-center">
-        <div class="nav-tab active" id="tab-feed" onclick="switchNav('feed')">
+        <div class="nav-tab active" id="tab-feed" onclick="switchTab('feed')">
           <span>🏠 Feed</span>
         </div>
-        <div class="nav-tab" id="tab-profile" onclick="viewUserProfile('david')">
-          <span>👤 My Wall</span>
+        <div class="nav-tab" id="tab-wall" onclick="switchTab('wall')">
+          <span>🧱 My Wall</span>
         </div>
-        <div class="nav-tab" id="tab-photos" onclick="switchNav('photos')">
-          <span>📸 Photos</span>
-        </div>
-        <div class="nav-tab" id="tab-friends" onclick="switchNav('friends')">
-          <span>👥 Friends & Kin</span>
+        <div class="nav-tab" id="tab-friends" onclick="switchTab('friends')">
+          <span>👥 Kin & Friends</span>
         </div>
       </div>
 
       <div class="nav-right">
-        <div class="nav-profile-pill" onclick="viewUserProfile('david')">
-          <div class="nav-avatar" id="topAvatar">DJ</div>
-          <span id="topUserName">David</span>
+        <div class="nav-profile-pill" onclick="switchTab('wall')">
+          <div class="nav-avatar" id="navAvatar">ME</div>
+          <span id="navName">My Account</span>
         </div>
-        <button class="nav-icon-btn" onclick="toggleDropdown('requestsDropdown')" title="Friend & Kin Requests">
-          👥
-          <span class="badge" id="requestsBadge">2</span>
-        </button>
-        <button class="nav-icon-btn" onclick="toggleDropdown('messagesDropdown')" title="Messenger">
-          💬
-          <span class="badge">1</span>
-        </button>
-        <button class="nav-icon-btn" onclick="toggleDropdown('notificationsDropdown')" title="Notifications">
-          🔔
-          <span class="badge">3</span>
-        </button>
+        <button class="nav-btn" onclick="openProfileModal()">⚙️ Profile</button>
       </div>
     </div>
   </header>
 
-  <!-- Notification Dropdown -->
-  <div id="notificationsDropdown" class="dropdown-panel">
-    <div class="dropdown-header">
-      <span>Notifications</span>
-      <span style="font-size:11px; color:var(--primary); cursor:pointer;">Mark all read</span>
-    </div>
-    <div class="dropdown-item unread" onclick="viewUserProfile('sarah')">
-      <span style="font-size:18px;">✍️</span>
-      <div>
-        <strong>Sarah Jenkins</strong> wrote on your <strong>Wall</strong>: "Happy Birthday Dad! Check out the throwback photo I posted!"
-        <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">10m ago</div>
-      </div>
-    </div>
-    <div class="dropdown-item unread" onclick="switchNav('photos')">
-      <span style="font-size:18px;">📸</span>
-      <div>
-        <strong>Grandma Rose</strong> added 12 new photos to <strong>Thanksgiving Archive</strong>.
-        <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">1 hour ago</div>
-      </div>
-    </div>
-    <div class="dropdown-item" onclick="switchNav('feed')">
-      <span style="font-size:18px;">❤️</span>
-      <div>
-        <strong>Claire Jenkins</strong> and 4 others loved your status update.
-        <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">3 hours ago</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Requests Dropdown -->
-  <div id="requestsDropdown" class="dropdown-panel">
-    <div class="dropdown-header">
-      <span>Family & Friend Requests</span>
-      <span style="font-size:11px; color:var(--primary); cursor:pointer;" onclick="switchNav('friends')">See all</span>
-    </div>
-    <div id="dropdownRequestsList">
-      <div class="dropdown-item" style="flex-direction:column; gap:8px;">
-        <div style="display:flex; gap:10px; align-items:center;">
-          <div class="nav-avatar" style="background:#70587c;">MJ</div>
-          <div>
-            <strong>Uncle Mark Jenkins</strong>
-            <div style="font-size:11px; color:var(--primary); font-weight:700;">Relationship: Brother</div>
-          </div>
-        </div>
-        <div style="display:flex; gap:6px;">
-          <button class="btn btn-primary" style="padding:4px 10px; font-size:11px;" onclick="confirmFriendRequest(this, 'Uncle Mark')">Confirm Kin</button>
-          <button class="btn btn-secondary" style="padding:4px 10px; font-size:11px;" onclick="this.closest('.dropdown-item').remove()">Ignore</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Messages Dropdown -->
-  <div id="messagesDropdown" class="dropdown-panel">
-    <div class="dropdown-header">
-      <span>Family Messenger</span>
-    </div>
-    <div class="dropdown-item unread" onclick="alert('Opening chat thread with Claire Jenkins...')">
-      <div class="nav-avatar" style="background:#3b6978;">CJ</div>
-      <div>
-        <strong>Claire (Wife)</strong>
-        <p style="font-size:12px; color:var(--text-muted);">Can you pick up apple cider on the way home?</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main View Router Container -->
+  <!-- Main View -->
   <main class="app-main">
 
-    <!-- ================= VIEW 1: HOME FEED ================= -->
+    <!-- ================= 1. NEWS FEED ================= -->
     <div id="view-feed" class="view-section active">
-      <div class="feed-layout">
+      <!-- Composer -->
+      <div class="card">
+        <div class="composer-top">
+          <div class="nav-avatar" id="feedComposerAvatar">ME</div>
+          <textarea id="feedPostInput" class="composer-input" placeholder="Share a family moment or photo..."></textarea>
+        </div>
+        <div class="composer-bottom">
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-outline" onclick="attachPhotoTrigger()">📷 Photo</button>
+            <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="handleFileSelect(event)">
+            <span id="attachedPhotoNotice" style="font-size:12px; color:var(--primary); font-weight:600; display:none; align-items:center;">✓ Photo ready</span>
+          </div>
+          <button class="btn btn-primary" onclick="publishFeedPost()">Share Post</button>
+        </div>
+      </div>
 
-        <!-- Left Column -->
-        <aside class="left-sidebar">
-          <div class="side-menu-item active" onclick="switchNav('feed')">
-            <span>📰 News Feed</span>
-          </div>
-          <div class="side-menu-item" onclick="viewUserProfile('david')">
-            <span>👤 David Jenkins (Profile & Wall)</span>
-          </div>
-          <div class="side-menu-item" onclick="switchNav('photos')">
-            <span>🖼️ Photos & Albums</span>
-            <span class="side-menu-badge">84</span>
-          </div>
-          <div class="side-menu-item" onclick="switchNav('friends')">
-            <span>👥 Friends & Kin Directory</span>
-            <span class="side-menu-badge">24</span>
-          </div>
-          
-          <div style="margin: 14px 0 6px 10px; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
-            Family Circles (Branches)
-          </div>
-          <div class="side-menu-item" onclick="filterFeedByAudience('immediate')">
-            <span>🏡 Immediate Family</span>
-          </div>
-          <div class="side-menu-item" onclick="filterFeedByAudience('extended')">
-            <span>🌳 Extended Jenkins Clan</span>
-          </div>
-          <div class="side-menu-item" onclick="filterFeedByAudience('friends')">
-            <span>☕ Close Friends</span>
-          </div>
-        </aside>
-
-        <!-- Center Feed Column -->
-        <section class="center-col">
-          <!-- Create Post on News Feed -->
-          <div class="card">
-            <div class="composer-top">
-              <div class="nav-avatar" style="width:40px; height:40px; font-size:14px; background:#2d5a43;">DJ</div>
-              <textarea id="feedComposerInput" class="composer-input" placeholder="What's on your mind, David?"></textarea>
-            </div>
-            <div class="composer-bottom">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-size:12px; font-weight:600; color:var(--text-muted);">Audience:</span>
-                <select id="feedAudienceSelect" style="padding:4px 8px; border-radius:6px; border:1px solid var(--border); font-size:12px;">
-                  <option value="tree">🌳 Entire Tree</option>
-                  <option value="immediate">🏡 Immediate Family</option>
-                  <option value="friends">☕ Friends Circle</option>
-                </select>
-                <button class="btn btn-outline" style="padding:4px 10px;" onclick="simulateAddPhotoToPost()">📷 Photo</button>
-              </div>
-              <button class="btn btn-primary" onclick="publishFeedPost()">Share Post</button>
-            </div>
-          </div>
-
-          <!-- Feed Posts List -->
-          <div id="feedPostsStream">
-            <!-- Rendered by JS -->
-          </div>
-        </section>
-
-        <!-- Right Column Widgets -->
-        <aside class="right-sidebar">
-          <div class="widget-box">
-            <div class="widget-head">
-              <span>Birthdays This Month 🎂</span>
-            </div>
-            <div style="display:flex; gap:10px; align-items:center; font-size:13px;">
-              <span style="font-size:22px;">🎁</span>
-              <div>
-                <strong>Grandma Rose</strong> has her 81st birthday on <strong>October 14th</strong>!
-              </div>
-            </div>
-          </div>
-
-          <div class="widget-box">
-            <div class="widget-head">
-              <span>Family Gatherings</span>
-            </div>
-            <div style="font-size:13px; margin-bottom:10px;">
-              <strong>Sunday Autumn Dinner & Game Night</strong>
-              <div style="font-size:12px; color:var(--text-muted);">Sunday, Oct 18 • Patio</div>
-              <div style="font-size:11px; color:var(--primary); font-weight:700; margin-top:2px;">9 family members attending</div>
-            </div>
-            <button class="btn btn-outline" style="width:100%; font-size:12px;" onclick="alert('Viewing gathering potluck sheet...')">View Potluck & RSVP</button>
-          </div>
-
-          <div class="widget-box" style="background:#eaf2ed; border-color:#c8dfd0;">
-            <div style="font-size:13px; font-weight:700; color:var(--primary-dark); margin-bottom:4px;">
-              🛡️ Private by Architecture
-            </div>
-            <p style="font-size:11px; color:#224734; line-height:1.4;">
-              Zero third-party trackers, no behavioral ads, and complete data ownership. Export your entire family tree at any time.
-            </p>
-          </div>
-        </aside>
-
+      <!-- Posts List -->
+      <div id="feedPostsList">
+        <!-- Rendered by JS -->
       </div>
     </div>
 
-    <!-- ================= VIEW 2: PROFILE & THE WALL ================= -->
-    <div id="view-profile" class="view-section">
-      <div class="profile-container">
-        <!-- Cover Photo -->
-        <div class="cover-photo-wrapper">
-          <div style="position:absolute; bottom:12px; right:16px;">
-            <button class="btn btn-outline" style="background:rgba(255,255,255,0.85); font-size:12px;" onclick="alert('Cover photo change dialog')">📷 Edit Cover</button>
+    <!-- ================= 2. THE WALL ================= -->
+    <div id="view-wall" class="view-section">
+      <div class="profile-header-box">
+        <div class="cover-bar"></div>
+        <div class="profile-bar">
+          <div style="display:flex; align-items:flex-end; gap:16px;">
+            <div class="profile-avatar-large" id="wallAvatar">ME</div>
+            <div class="profile-name-area">
+              <h2 id="wallName">My Profile</h2>
+              <p id="wallRoleBio">Family Founder • No test data</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Header Info Bar -->
-        <div class="profile-header-bar">
-          <div class="profile-avatar-big" id="profileBigAvatar">DJ</div>
-          <div class="profile-name-area">
-            <h2 id="profileBigName">David Jenkins</h2>
-            <span id="profileRelationBadge">Head of Household • Father</span>
-          </div>
-          <div class="profile-actions">
-            <button class="btn btn-primary" onclick="focusWallComposer()">✍️ Write on Wall</button>
-            <button class="btn btn-secondary" onclick="alert('Opening 1:1 chat thread')">💬 Message</button>
-            <button class="btn btn-outline" onclick="alert('Family connection verified.')">Kinship Verified ✓</button>
-          </div>
-        </div>
-
-        <!-- Profile Sub-navigation Tabs -->
-        <div class="profile-nav-tabs">
-          <div class="p-tab active" onclick="switchProfileTab('wall', this)">The Wall</div>
-          <div class="p-tab" onclick="switchProfileTab('about', this)">About & Kinship</div>
-          <div class="p-tab" onclick="switchProfileTab('photos', this)">Photos (<span id="profilePhotoCount">18</span>)</div>
-          <div class="p-tab" onclick="switchProfileTab('friends', this)">Friends & Relatives (24)</div>
+          <button class="btn btn-outline" onclick="openProfileModal()">Edit Info</button>
         </div>
       </div>
 
-      <!-- Profile Tab Content Grid -->
-      <div class="profile-grid">
-        <!-- Left Column: About & Mini Widgets -->
-        <div>
-          <div class="card" style="margin-bottom:16px;">
-            <h4 style="font-size:15px; font-weight:700; margin-bottom:12px;">Intro & Family Roots</h4>
-            <div id="profileBioText" style="font-size:13px; line-height:1.5; color:var(--text); margin-bottom:14px;">
-              Software architect, backyard grill master, youth soccer coach. Proud dad of Sarah & Leo.
-            </div>
-            <div class="about-item"><span>🏡 Lives in:</span> <strong>Waukee, Iowa</strong></div>
-            <div class="about-item"><span>🎓 Studied at:</span> <strong>Iowa State University</strong></div>
-            <div class="about-item"><span>🎂 Birthday:</span> <strong>August 12</strong></div>
-            <div class="about-item"><span>💍 Married to:</span> <strong style="color:var(--primary); cursor:pointer;" onclick="viewUserProfile('claire')">Claire Jenkins</strong></div>
-          </div>
-
-          <div class="card">
-            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
-              <h4 style="font-size:14px; font-weight:700;">Family Connections</h4>
-              <span style="font-size:12px; color:var(--primary); cursor:pointer;" onclick="switchNav('friends')">View All</span>
-            </div>
-            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; text-align:center; font-size:11px;">
-              <div onclick="viewUserProfile('claire')" style="cursor:pointer;">
-                <div class="nav-avatar" style="width:48px; height:48px; margin:0 auto 4px; background:#3b6978;">CJ</div>
-                <strong>Claire</strong>
-                <div style="color:var(--text-muted);">Wife</div>
-              </div>
-              <div onclick="viewUserProfile('sarah')" style="cursor:pointer;">
-                <div class="nav-avatar" style="width:48px; height:48px; margin:0 auto 4px; background:#d97757;">SJ</div>
-                <strong>Sarah</strong>
-                <div style="color:var(--text-muted);">Daughter</div>
-              </div>
-              <div onclick="viewUserProfile('rose')" style="cursor:pointer;">
-                <div class="nav-avatar" style="width:48px; height:48px; margin:0 auto 4px; background:#b35c44;">RJ</div>
-                <strong>Rose</strong>
-                <div style="color:var(--text-muted);">Mother</div>
-              </div>
-            </div>
-          </div>
+      <!-- Write on Wall -->
+      <div class="card">
+        <div class="composer-top">
+          <div class="nav-avatar" id="wallComposerAvatar">ME</div>
+          <textarea id="wallPostInput" class="composer-input" placeholder="Write something on your Wall..."></textarea>
         </div>
-
-        <!-- Right Column: The Wall Feed -->
-        <div>
-          <!-- Write on Wall Box -->
-          <div class="card" style="margin-bottom:16px;">
-            <div class="composer-top">
-              <div class="nav-avatar" style="background:#2d5a43;">DJ</div>
-              <textarea id="wallPostInput" class="composer-input" placeholder="Write something on this Wall..."></textarea>
-            </div>
-            <div class="composer-bottom">
-              <button class="btn btn-outline" style="font-size:12px;" onclick="simulateAddPhotoToPost()">📷 Attach Photo</button>
-              <button class="btn btn-primary" onclick="postToWall()">Post to Wall</button>
-            </div>
-          </div>
-
-          <!-- Wall Posts Stream -->
-          <div id="wallPostsStream">
-            <!-- Populated by JS -->
-          </div>
+        <div class="composer-bottom">
+          <div></div>
+          <button class="btn btn-primary" onclick="publishWallPost()">Post to Wall</button>
         </div>
+      </div>
+
+      <!-- Wall Posts -->
+      <div id="wallPostsList">
+        <!-- Rendered by JS -->
       </div>
     </div>
 
-    <!-- ================= VIEW 3: PHOTOS & ALBUMS ================= -->
-    <div id="view-photos" class="view-section">
-      <div class="card" style="margin-bottom:20px;">
-        <div class="photos-header">
-          <div>
-            <h2 style="font-size:20px; font-weight:800; color:var(--primary-dark);">Family Photo Albums</h2>
-            <p style="font-size:13px; color:var(--text-muted);">Full-resolution family memories preserved without algorithmic compression.</p>
-          </div>
-          <button class="btn btn-primary" onclick="openNewAlbumModal()">+ Create New Album</button>
-        </div>
-
-        <div class="albums-grid" id="albumsContainer">
-          <!-- Injected by JS -->
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= VIEW 4: FRIENDS & KIN DIRECTORY ================= -->
+    <!-- ================= 3. KIN & FRIENDS ================= -->
     <div id="view-friends" class="view-section">
       <div class="card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
           <div>
-            <h2 style="font-size:20px; font-weight:800; color:var(--primary-dark);">Friends & Family Directory</h2>
-            <p style="font-size:13px; color:var(--text-muted);">Manage your inner circle, kinship relations, and branch memberships.</p>
+            <h3 style="font-size:18px; font-weight:800; color:var(--primary-dark);">Family & Friends Circle</h3>
+            <p style="font-size:13px; color:var(--text-muted);">Invite your real relatives and friends to join your private Social Tree.</p>
           </div>
-          <button class="btn btn-primary" onclick="alert('Invite link copied! Send via SMS or email.')">✉️ Send Family Invite</button>
+          <button class="btn btn-primary" onclick="openInviteDialog()">+ Invite Kin</button>
         </div>
 
-        <!-- Pending Requests Section -->
-        <div style="background:#fcf9f2; border:1px solid #eadbc2; border-radius:8px; padding:14px; margin-bottom:20px;">
-          <h4 style="font-size:13px; font-weight:700; color:#855c14; text-transform:uppercase; margin-bottom:8px;">Pending Kinship Requests (2)</h4>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; background:#fff; padding:10px 14px; border-radius:6px; border:1px solid #ebd9b5;">
-              <div style="display:flex; gap:10px; align-items:center;">
-                <div class="nav-avatar" style="background:#70587c;">MJ</div>
-                <div>
-                  <strong>Uncle Mark Jenkins</strong> wants to connect as <strong>Brother</strong>.
-                  <div style="font-size:11px; color:var(--text-muted);">14 mutual family connections</div>
-                </div>
-              </div>
-              <div style="display:flex; gap:6px;">
-                <button class="btn btn-primary" style="font-size:12px; padding:4px 12px;" onclick="confirmFriendRequest(this, 'Uncle Mark')">Confirm</button>
-                <button class="btn btn-secondary" style="font-size:12px; padding:4px 12px;" onclick="this.closest('div').parentElement.remove()">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Directory Grid -->
-        <div class="friends-grid" id="friendsDirectoryGrid">
-          <!-- Injected by JS -->
+        <div id="friendsListContainer">
+          <!-- Rendered by JS -->
         </div>
       </div>
     </div>
 
   </main>
 
-  <!-- ================= PHOTO LIGHTBOX THEATER MODAL ================= -->
-  <div id="photoLightbox" class="lightbox-backdrop" onclick="closeLightbox(event)">
-    <button class="lightbox-close" onclick="closeLightboxDirect()">✕</button>
-    <div class="lightbox-container" onclick="event.stopPropagation()">
-      <div class="lightbox-stage">
-        <img id="lightboxImg" src="" alt="Family Photo">
-      </div>
-      <div class="lightbox-sidebar">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-          <div class="nav-avatar" id="lightboxAvatar" style="background:#2d5a43;">DJ</div>
-          <div>
-            <h4 id="lightboxAuthor" style="font-size:14px; font-weight:700;">David Jenkins</h4>
-            <span id="lightboxDate" style="font-size:12px; color:var(--text-muted);">October 2, 2026</span>
-          </div>
-        </div>
-        <p id="lightboxCaption" style="font-size:14px; line-height:1.5; margin-bottom:16px;">Photo caption...</p>
+  <!-- ================= EDIT PROFILE / SETUP MODAL ================= -->
+  <div id="profileModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3>Your Family Account</h3>
+      <p>Set up your profile so family members see who is posting.</p>
 
-        <div style="border-top:1px solid var(--border-light); padding-top:12px; margin-top:auto;">
-          <h5 style="font-size:13px; font-weight:700; margin-bottom:8px;">Photo Comments</h5>
-          <div id="lightboxComments" style="display:flex; flex-direction:column; gap:8px; max-height:220px; overflow-y:auto; margin-bottom:10px;">
-            <!-- Comments -->
-          </div>
-          <div style="display:flex; gap:6px;">
-            <input type="text" id="lightboxCommentInput" class="c-input" placeholder="Write a comment on this photo..." onkeypress="if(event.key==='Enter')addPhotoComment()">
-            <button class="btn btn-primary" style="padding:4px 10px; font-size:12px;" onclick="addPhotoComment()">Post</button>
-          </div>
-        </div>
+      <div class="form-group">
+        <label>Your Full Name</label>
+        <input type="text" id="inputFullName" class="form-control" placeholder="e.g. Dakota">
+      </div>
+
+      <div class="form-group">
+        <label>Your Role in the Family</label>
+        <input type="text" id="inputFamilyRole" class="form-control" placeholder="e.g. Dad, Mom, Brother, Sister, Founder">
+      </div>
+
+      <div class="form-group">
+        <label>Short Bio</label>
+        <input type="text" id="inputBio" class="form-control" placeholder="A little note about you...">
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:20px;">
+        <button class="btn btn-primary" style="flex:1;" onclick="saveProfile()">Save Profile</button>
+        <button class="btn btn-secondary" onclick="closeProfileModal()">Cancel</button>
+      </div>
+
+      <div style="margin-top:20px; border-top:1px solid var(--border-light); padding-top:14px; text-align:center;">
+        <button style="background:none; border:none; color:#c92a2a; font-size:12px; cursor:pointer;" onclick="clearAllData()">
+          🗑️ Clear all saved posts and start fresh
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- JavaScript Application Logic -->
+  <!-- JavaScript App Logic (Clean & Persistent) -->
   <script>
-    // Application State Database
-    const appDB = {
-      currentUser: {
-        id: 'david',
-        name: 'David Jenkins',
-        role: 'Father',
-        initials: 'DJ',
-        color: '#2d5a43'
-      },
-      currentViewingProfile: 'david',
-      users: {
-        david: {
-          name: 'David Jenkins',
-          relation: 'Father (You)',
-          avatar: 'DJ',
-          color: '#2d5a43',
-          bio: 'Software architect, backyard grill master, youth soccer coach. Proud dad of Sarah & Leo.',
-          hometown: 'Waukee, Iowa',
-          birthday: 'August 12',
-          spouse: 'Claire Jenkins'
-        },
-        sarah: {
-          name: 'Sarah Jenkins',
-          relation: 'Daughter',
-          avatar: 'SJ',
-          color: '#d97757',
-          bio: 'Biomedical engineering student at Iowa State. Coffee enthusiast and midfielder.',
-          hometown: 'Ames, Iowa',
-          birthday: 'June 19',
-          spouse: 'Single'
-        },
-        claire: {
-          name: 'Claire Jenkins',
-          relation: 'Wife',
-          avatar: 'CJ',
-          color: '#3b6978',
-          bio: 'High school art teacher, botanical illustrator, ceramicist. Loving life in Iowa.',
-          hometown: 'Waukee, Iowa',
-          birthday: 'September 3',
-          spouse: 'David Jenkins'
-        },
-        rose: {
-          name: 'Grandma Rose',
-          relation: 'Grandmother',
-          avatar: 'RJ',
-          color: '#b35c44',
-          bio: 'Matriarch of the Jenkins family. Master baker, quilt maker, and family historian.',
-          hometown: 'Des Moines, Iowa',
-          birthday: 'October 14',
-          spouse: 'Arthur Jenkins (†)'
-        }
-      },
-      posts: [
-        {
-          id: 101,
-          author: 'Sarah Jenkins',
-          authorKey: 'sarah',
-          targetWallUser: 'david', // Posted on David's Wall!
-          time: '2 hours ago',
-          content: 'Happy Birthday Dad! Thank you for always being in the front row of every soccer match and helping me debug my engineering code. We love you so much! ❤️🎂',
-          image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="100%" height="100%" fill="%23d97757"/><circle cx="300" cy="200" r="100" fill="%23f7d1b3"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%232d5a43" font-weight="bold">Throwback: Soccer Championship 2018</text></svg>',
-          likes: 8,
-          hugs: 4,
-          comments: [
-            { author: 'David Jenkins', text: 'Thank you sweetheart! Time really flies!' },
-            { author: 'Grandma Rose', text: 'Look at that proud dad smile!' }
-          ]
-        },
-        {
-          id: 102,
-          author: 'Claire Jenkins',
-          authorKey: 'claire',
-          targetWallUser: null, // News feed post
-          time: '4 hours ago',
-          content: 'Just finished harvesting the autumn heirloom pumpkins and mums! Fresh apple cider is bubbling on the stove if anyone is stopping by this evening. 🍂🎃',
-          image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="100%" height="100%" fill="%235a8f76"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="white" font-weight="bold">Autumn Pumpkin Harvest Patio</text></svg>',
-          likes: 6,
-          hugs: 2,
-          comments: [
-            { author: 'Elena Vance', text: 'I am on my way over for that cider!!' }
-          ]
-        },
-        {
-          id: 103,
-          author: 'Grandma Rose',
-          authorKey: 'rose',
-          targetWallUser: 'david', // On David's Wall
-          time: 'Yesterday',
-          content: 'David dear, I found your 5th grade spelling bee ribbon while going through the Cedar Street trunks. Saved it for you in our archive vault!',
-          image: null,
-          likes: 5,
-          hugs: 5,
-          comments: []
-        }
-      ],
-      albums: [
-        {
-          id: 'a1',
-          title: 'Family Summer Vacations',
-          count: '42 photos',
-          cover: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="100%" height="100%" fill="%233b6978"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="white" font-weight="bold">Lake Okoboji Cabin</text></svg>',
-          photos: [
-            {
-              url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="100%" height="100%" fill="%233b6978"/><circle cx="400" cy="300" r="140" fill="%23fff" opacity="0.2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="28" fill="white" font-weight="bold">Sunset over Lake Okoboji Dock</text></svg>',
-              author: 'Claire Jenkins',
-              date: 'July 24, 2025',
-              caption: 'The whole family out on the pontoon boat as the sun went down. Unforgettable evening.',
-              comments: ['David: What a glorious sunset!']
-            },
-            {
-              url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="100%" height="100%" fill="%23d97757"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="28" fill="white" font-weight="bold">Leo Catching His First Bass</text></svg>',
-              author: 'David Jenkins',
-              date: 'July 25, 2025',
-              caption: 'Leo pulled in this 4-pound largemouth bass right off the pier at 6:30 AM!',
-              comments: ['Rose: He has Arthur’s fishing patience!']
-            }
-          ]
-        },
-        {
-          id: 'a2',
-          title: 'Thanksgiving & Holiday Archives',
-          count: '28 photos',
-          cover: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="100%" height="100%" fill="%23b35c44"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="white" font-weight="bold">Thanksgiving Feast</text></svg>',
-          photos: []
-        },
-        {
-          id: 'a3',
-          title: 'Sarah & Leo Childhood Throwbacks',
-          count: '64 photos',
-          cover: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="100%" height="100%" fill="%232d5a43"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="white" font-weight="bold">First Day of School 2012</text></svg>',
-          photos: []
-        }
-      ],
-      friends: [
-        { name: 'Claire Jenkins', relation: 'Wife', avatar: 'CJ', color: '#3b6978', mutual: 'Whole family', key: 'claire' },
-        { name: 'Sarah Jenkins', relation: 'Daughter', avatar: 'SJ', color: '#d97757', mutual: '18 relatives', key: 'sarah' },
-        { name: 'Grandma Rose', relation: 'Mother', avatar: 'RJ', color: '#b35c44', mutual: '22 relatives', key: 'rose' },
-        { name: 'Leo Jenkins', relation: 'Son', avatar: 'LJ', color: '#206a5d', mutual: '18 relatives', key: 'leo' },
-        { name: 'Uncle Mark Jenkins', relation: 'Brother', avatar: 'MJ', color: '#70587c', mutual: '14 relatives', key: 'mark' },
-        { name: 'Elena Vance', relation: 'Close Family Friend', avatar: 'EV', color: '#e07a5f', mutual: 'Claire & David', key: 'elena' }
-      ]
+    // Storage keys
+    const STORAGE_KEY_USER = 'social_tree_my_user';
+    const STORAGE_KEY_POSTS = 'social_tree_my_posts';
+    const STORAGE_KEY_FRIENDS = 'social_tree_my_friends';
+
+    // State
+    let currentUser = {
+      name: 'Dakota',
+      role: 'Family Founder',
+      bio: 'Welcome to our private family tree!',
+      avatar: 'D'
     };
 
-    // Navigation Switcher
-    function switchNav(navKey) {
+    let posts = [];
+    let friends = [];
+    let attachedPhotoData = null;
+
+    // Load from LocalStorage
+    function initData() {
+      const savedUser = localStorage.getItem(STORAGE_KEY_USER);
+      if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+      } else {
+        // First time setup trigger
+        setTimeout(() => {
+          openProfileModal();
+        }, 600);
+      }
+
+      const savedPosts = localStorage.getItem(STORAGE_KEY_POSTS);
+      if (savedPosts) {
+        posts = JSON.parse(savedPosts);
+      } else {
+        posts = [];
+      }
+
+      const savedFriends = localStorage.getItem(STORAGE_KEY_FRIENDS);
+      if (savedFriends) {
+        friends = JSON.parse(savedFriends);
+      } else {
+        friends = [
+          { name: currentUser.name, role: currentUser.role, initial: currentUser.avatar }
+        ];
+      }
+
+      updateUI();
+    }
+
+    function updateUI() {
+      document.getElementById('navName').innerText = currentUser.name;
+      document.getElementById('navAvatar').innerText = currentUser.avatar;
+      document.getElementById('feedComposerAvatar').innerText = currentUser.avatar;
+      document.getElementById('wallComposerAvatar').innerText = currentUser.avatar;
+      document.getElementById('wallAvatar').innerText = currentUser.avatar;
+      document.getElementById('wallName').innerText = currentUser.name;
+      document.getElementById('wallRoleBio').innerText = `${currentUser.role} • ${currentUser.bio}`;
+
+      renderFeed();
+      renderWall();
+      renderFriendsList();
+    }
+
+    // Tab Switcher
+    function switchTab(tabKey) {
       document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
 
-      const view = document.getElementById('view-' + navKey);
-      if (view) view.classList.add('active');
-
-      const tab = document.getElementById('tab-' + navKey);
-      if (tab) tab.classList.add('active');
-
-      closeAllDropdowns();
+      document.getElementById('view-' + tabKey).classList.add('active');
+      document.getElementById('tab-' + tabKey).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      if (navKey === 'feed') renderFeedStream();
-      if (navKey === 'photos') renderAlbums();
-      if (navKey === 'friends') renderFriends();
     }
 
-    // View User Profile & Wall
-    function viewUserProfile(userKey) {
-      appDB.currentViewingProfile = userKey;
-      const u = appDB.users[userKey] || {
-        name: userKey,
-        relation: 'Family Member',
-        avatar: userKey.substring(0,2).toUpperCase(),
-        color: '#555',
-        bio: 'Family member profile.',
-        hometown: 'Iowa',
-        birthday: 'Spring',
-        spouse: 'None'
+    // Photo selection
+    function attachPhotoTrigger() {
+      document.getElementById('photoFileInput').click();
+    }
+
+    function handleFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        attachedPhotoData = evt.target.result;
+        const notice = document.getElementById('attachedPhotoNotice');
+        notice.style.display = 'inline-flex';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Publishing Feed Post
+    function publishFeedPost() {
+      const input = document.getElementById('feedPostInput');
+      const text = input.value.trim();
+
+      if (!text && !attachedPhotoData) {
+        alert('Please write a message or select a photo.');
+        return;
+      }
+
+      const newPost = {
+        id: Date.now(),
+        author: currentUser.name,
+        role: currentUser.role,
+        initial: currentUser.avatar,
+        time: 'Just now',
+        content: text,
+        image: attachedPhotoData,
+        likes: 0,
+        comments: [],
+        isWallOnly: false
       };
 
-      document.getElementById('profileBigAvatar').innerText = u.avatar;
-      document.getElementById('profileBigAvatar').style.background = u.color;
-      document.getElementById('profileBigName').innerText = u.name;
-      document.getElementById('profileRelationBadge').innerText = u.relation;
-      document.getElementById('profileBioText').innerText = u.bio;
+      posts.unshift(newPost);
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
 
-      document.getElementById('wallPostInput').placeholder = (userKey === appDB.currentUser.id) 
-        ? "Share something on your personal Wall..." 
-        : `Write something to ${u.name}'s Wall...`;
-
-      switchNav('profile');
-      renderWallStream(userKey);
+      input.value = '';
+      attachedPhotoData = null;
+      document.getElementById('attachedPhotoNotice').style.display = 'none';
+      renderFeed();
+      renderWall();
     }
 
-    // Profile Sub-tab switching
-    function switchProfileTab(tabKey, tabEl) {
-      document.querySelectorAll('.p-tab').forEach(t => t.classList.remove('active'));
-      tabEl.classList.add('active');
-      if (tabKey === 'wall') {
-        renderWallStream(appDB.currentViewingProfile);
-      } else if (tabKey === 'photos') {
-        switchNav('photos');
-      } else if (tabKey === 'friends') {
-        switchNav('friends');
+    // Publishing Wall Post
+    function publishWallPost() {
+      const input = document.getElementById('wallPostInput');
+      const text = input.value.trim();
+
+      if (!text) {
+        alert('Please write something on the wall.');
+        return;
       }
+
+      const newPost = {
+        id: Date.now(),
+        author: currentUser.name,
+        role: currentUser.role,
+        initial: currentUser.avatar,
+        time: 'Just now',
+        content: text,
+        image: null,
+        likes: 0,
+        comments: [],
+        isWallOnly: true
+      };
+
+      posts.unshift(newPost);
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
+
+      input.value = '';
+      renderFeed();
+      renderWall();
     }
 
-    // Render Home Feed Stream
-    function renderFeedStream() {
-      const container = document.getElementById('feedPostsStream');
+    // Render Feed
+    function renderFeed() {
+      const container = document.getElementById('feedPostsList');
       container.innerHTML = '';
 
-      appDB.posts.forEach(post => {
-        container.appendChild(createPostCardElement(post, false));
+      if (posts.length === 0) {
+        container.innerHTML = `
+          <div class="card empty-state">
+            <div class="empty-state-icon">🌱</div>
+            <h4 style="font-weight:700; font-size:16px;">The Tree is planted!</h4>
+            <p style="font-size:13px; margin-top:4px;">No test posts here. Share the very first family photo or memory above!</p>
+          </div>
+        `;
+        return;
+      }
+
+      posts.forEach(post => {
+        container.appendChild(createPostCard(post));
       });
     }
 
-    // Render Specific Profile Wall Stream
-    function renderWallStream(targetUserKey) {
-      const container = document.getElementById('wallPostsStream');
+    // Render Wall
+    function renderWall() {
+      const container = document.getElementById('wallPostsList');
       container.innerHTML = '';
 
-      // Find posts where targetWallUser matches this user OR author is this user
-      const wallPosts = appDB.posts.filter(p => p.targetWallUser === targetUserKey || (p.authorKey === targetUserKey && !p.targetWallUser));
+      const wallPosts = posts.filter(p => p.isWallOnly || p.author === currentUser.name);
 
       if (wallPosts.length === 0) {
         container.innerHTML = `
-          <div class="card" style="text-align:center; padding:30px; color:var(--text-muted);">
-            <div style="font-size:32px; margin-bottom:8px;">🧱</div>
-            <strong>No Wall posts yet.</strong>
-            <p style="font-size:13px; margin-top:4px;">Be the first to leave a message or memory on this Wall!</p>
+          <div class="card empty-state">
+            <div class="empty-state-icon">🧱</div>
+            <h4 style="font-weight:700; font-size:16px;">Your Wall is fresh and clean</h4>
+            <p style="font-size:13px; margin-top:4px;">Posts you or invited family members write will show up here.</p>
           </div>
         `;
         return;
       }
 
       wallPosts.forEach(post => {
-        container.appendChild(createPostCardElement(post, true));
+        container.appendChild(createPostCard(post));
       });
     }
 
-    // Reusable Post Card Generator
-    function createPostCardElement(post, isWallContext) {
+    // Create Post Element
+    function createPostCard(post) {
       const card = document.createElement('div');
       card.className = 'post-card';
 
-      let wallHeaderPart = '';
-      if (post.targetWallUser && post.targetWallUser !== post.authorKey) {
-        const targetU = appDB.users[post.targetWallUser] || { name: post.targetWallUser };
-        wallHeaderPart = `<span class="wall-arrow">▶ wrote on</span> <span class="post-user-name" onclick="viewUserProfile('${post.targetWallUser}')">${targetU.name}'s Wall</span>`;
-      }
-
-      const authorU = appDB.users[post.authorKey] || { avatar: '?', color: '#555' };
-
-      let imageHtml = '';
+      let imgHtml = '';
       if (post.image) {
-        imageHtml = `
-          <div class="post-image-container" onclick="openLightboxFromPost('${post.image}', '${post.author}', '${post.content}')">
-            <img src="${post.image}" alt="Post image">
+        imgHtml = `
+          <div class="post-image-box">
+            <img src="${post.image}" alt="Family photo">
           </div>
         `;
       }
 
-      let commentsHtml = post.comments.map(c => `
+      let commentsHtml = (post.comments || []).map(c => `
         <div class="comment-bubble">
-          <div class="nav-avatar" style="width:26px; height:26px; font-size:10px;">${c.author.split(' ').map(n=>n[0]).join('')}</div>
           <div class="comment-text-box">
-            <span class="comment-user">${c.author}</span> ${c.text}
+            <span class="comment-user">${c.author}:</span> ${c.text}
           </div>
         </div>
       `).join('');
@@ -1418,32 +815,21 @@
       card.innerHTML = `
         <div class="post-header">
           <div class="post-user-info">
-            <div class="nav-avatar" style="width:40px; height:40px; font-size:14px; background:${authorU.color};">${authorU.avatar}</div>
+            <div class="nav-avatar">${post.initial}</div>
             <div>
-              <div>
-                <span class="post-user-name" onclick="viewUserProfile('${post.authorKey}')">${post.author}</span>
-                ${wallHeaderPart}
-              </div>
-              <div class="post-meta-sub">
-                <span>${post.time}</span> • <span>🔒 Family Protected</span>
-              </div>
+              <div class="post-user-name">${post.author} <span style="font-size:11px; font-weight:normal; color:var(--primary); background:var(--primary-light); padding:1px 6px; border-radius:10px;">${post.role}</span></div>
+              <div class="post-meta-sub"><span>${post.time}</span> • <span>🔒 Family Only</span></div>
             </div>
           </div>
         </div>
 
         <div class="post-body">${post.content}</div>
 
-        ${imageHtml}
+        ${imgHtml}
 
-        <div class="post-stats-row">
-          <span>❤️ ${post.likes} loves &nbsp;•&nbsp; 🤗 ${post.hugs} hugs</span>
-          <span>${post.comments.length} comments</span>
-        </div>
-
-        <div class="post-reactions-bar">
-          <button class="react-btn" onclick="reactPost(${post.id}, 'like', this)">❤️ Love (${post.likes})</button>
-          <button class="react-btn" onclick="reactPost(${post.id}, 'hug', this)">🤗 Family Hug (${post.hugs})</button>
-          <button class="react-btn" onclick="focusCommentInput(${post.id})">💬 Comment</button>
+        <div class="post-actions-bar">
+          <button class="react-btn" onclick="likePost(${post.id}, this)">❤️ Love (${post.likes || 0})</button>
+          <button class="react-btn" onclick="focusComment(${post.id})">💬 Comment</button>
         </div>
 
         <div class="post-comments">
@@ -1459,267 +845,95 @@
       return card;
     }
 
-    // Reaction Handler
-    function reactPost(postId, type, btn) {
-      const p = appDB.posts.find(x => x.id === postId);
+    function likePost(id, btn) {
+      const p = posts.find(x => x.id === id);
       if (!p) return;
-      if (type === 'like') {
-        p.likes++;
-        btn.innerText = `❤️ Loved (${p.likes})`;
-        btn.classList.add('active');
-      } else {
-        p.hugs++;
-        btn.innerText = `🤗 Hugged (${p.hugs})`;
-        btn.classList.add('active');
-      }
+      p.likes = (p.likes || 0) + 1;
+      btn.innerText = `❤️ Loved (${p.likes})`;
+      btn.classList.add('active');
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
     }
 
-    // Comment Submission
-    function submitComment(postId) {
-      const input = document.getElementById(`comment-in-${postId}`);
-      const text = input.value.trim();
+    function focusComment(id) {
+      const el = document.getElementById(`comment-in-${id}`);
+      if (el) el.focus();
+    }
+
+    function submitComment(id) {
+      const el = document.getElementById(`comment-in-${id}`);
+      const text = el.value.trim();
       if (!text) return;
 
-      const p = appDB.posts.find(x => x.id === postId);
+      const p = posts.find(x => x.id === id);
       if (!p) return;
 
-      p.comments.push({
-        author: appDB.currentUser.name,
-        text: text
-      });
+      if (!p.comments) p.comments = [];
+      p.comments.push({ author: currentUser.name, text: text });
+      localStorage.setItem(STORAGE_KEY_POSTS, JSON.stringify(posts));
 
-      input.value = '';
-      if (document.getElementById('view-feed').classList.contains('active')) {
-        renderFeedStream();
-      } else {
-        renderWallStream(appDB.currentViewingProfile);
-      }
+      el.value = '';
+      renderFeed();
+      renderWall();
     }
 
-    function focusCommentInput(postId) {
-      const input = document.getElementById(`comment-in-${postId}`);
-      if (input) input.focus();
-    }
-
-    // Publish New Post on Feed
-    let attachedFeedImage = null;
-    function simulateAddPhotoToPost() {
-      attachedFeedImage = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="100%" height="100%" fill="%232d5a43"/><circle cx="300" cy="200" r="90" fill="%23e8f0eb"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="22" fill="%232d5a43" font-weight="bold">Family Sunday BBQ Photo</text></svg>';
-      alert('Photo attached from family camera roll! Ready to publish.');
-    }
-
-    function publishFeedPost() {
-      const input = document.getElementById('feedComposerInput');
-      const text = input.value.trim();
-      if (!text && !attachedFeedImage) {
-        alert('Please write something or attach a photo.');
-        return;
-      }
-
-      const newPost = {
-        id: Date.now(),
-        author: appDB.currentUser.name,
-        authorKey: appDB.currentUser.id,
-        targetWallUser: null,
-        time: 'Just now',
-        content: text,
-        image: attachedFeedImage,
-        likes: 1,
-        hugs: 0,
-        comments: []
-      };
-
-      appDB.posts.unshift(newPost);
-      input.value = '';
-      attachedFeedImage = null;
-      renderFeedStream();
-    }
-
-    // Post directly to Wall
-    function postToWall() {
-      const input = document.getElementById('wallPostInput');
-      const text = input.value.trim();
-      if (!text && !attachedFeedImage) {
-        alert('Please write something on the wall.');
-        return;
-      }
-
-      const newPost = {
-        id: Date.now(),
-        author: appDB.currentUser.name,
-        authorKey: appDB.currentUser.id,
-        targetWallUser: appDB.currentViewingProfile,
-        time: 'Just now',
-        content: text,
-        image: attachedFeedImage,
-        likes: 1,
-        hugs: 0,
-        comments: []
-      };
-
-      appDB.posts.unshift(newPost);
-      input.value = '';
-      attachedFeedImage = null;
-      renderWallStream(appDB.currentViewingProfile);
-    }
-
-    function focusWallComposer() {
-      const input = document.getElementById('wallPostInput');
-      if (input) {
-        input.focus();
-        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
-
-    // Render Albums
-    function renderAlbums() {
-      const container = document.getElementById('albumsContainer');
-      container.innerHTML = '';
-
-      appDB.albums.forEach(album => {
-        const el = document.createElement('div');
-        el.className = 'album-card';
-        el.onclick = () => openAlbumViewer(album);
-        el.innerHTML = `
-          <div class="album-cover"><img src="${album.cover}" alt="${album.title}"></div>
-          <div class="album-info">
-            <div class="album-title">${album.title}</div>
-            <div class="album-count">${album.count}</div>
+    // Render Friends
+    function renderFriendsList() {
+      const box = document.getElementById('friendsListContainer');
+      box.innerHTML = `
+        <div style="display:flex; align-items:center; gap:12px; padding:12px; background:var(--surface-subtle); border-radius:8px; border:1px solid var(--border-light);">
+          <div class="nav-avatar" style="width:44px; height:44px; font-size:16px;">${currentUser.avatar}</div>
+          <div>
+            <strong>${currentUser.name}</strong> (You)
+            <div style="font-size:12px; color:var(--text-muted);">${currentUser.role} • Admin</div>
           </div>
-        `;
-        container.appendChild(el);
-      });
-    }
-
-    function openAlbumViewer(album) {
-      if (album.photos && album.photos.length > 0) {
-        const first = album.photos[0];
-        openLightbox(first.url, first.author, first.date, first.caption, first.comments);
-      } else {
-        alert(`Opening ${album.title} (Contains ${album.count})`);
-      }
-    }
-
-    // Lightbox Controls
-    let currentLightboxComments = [];
-    function openLightbox(url, author, date, caption, comments) {
-      document.getElementById('lightboxImg').src = url;
-      document.getElementById('lightboxAuthor').innerText = author;
-      document.getElementById('lightboxDate').innerText = date;
-      document.getElementById('lightboxCaption').innerText = caption;
-      currentLightboxComments = comments || [];
-      renderLightboxComments();
-      document.getElementById('photoLightbox').classList.add('open');
-    }
-
-    function openLightboxFromPost(imgUrl, author, content) {
-      openLightbox(imgUrl, author, 'Family Post', content, []);
-    }
-
-    function renderLightboxComments() {
-      const cBox = document.getElementById('lightboxComments');
-      cBox.innerHTML = currentLightboxComments.map(c => `
-        <div style="font-size:12px; background:#f0f2f5; padding:6px 10px; border-radius:10px;">
-          ${c}
         </div>
-      `).join('');
+      `;
     }
 
-    function addPhotoComment() {
-      const inEl = document.getElementById('lightboxCommentInput');
-      const val = inEl.value.trim();
-      if (!val) return;
-      currentLightboxComments.push(`${appDB.currentUser.name}: ${val}`);
-      inEl.value = '';
-      renderLightboxComments();
+    function openInviteDialog() {
+      const url = window.location.href;
+      prompt('Copy this link and text it to your family members to join your Social Tree:', url);
     }
 
-    function closeLightbox(e) {
-      if (e.target.id === 'photoLightbox') {
-        document.getElementById('photoLightbox').classList.remove('open');
-      }
-    }
-    function closeLightboxDirect() {
-      document.getElementById('photoLightbox').classList.remove('open');
-    }
-
-    // Render Friends Directory
-    function renderFriends() {
-      const container = document.getElementById('friendsDirectoryGrid');
-      container.innerHTML = '';
-
-      appDB.friends.forEach(f => {
-        const el = document.createElement('div');
-        el.className = 'friend-card';
-        el.innerHTML = `
-          <div class="nav-avatar" style="width:52px; height:52px; font-size:16px; background:${f.color};">${f.avatar}</div>
-          <div class="friend-meta">
-            <h4 onclick="viewUserProfile('${f.key}')">${f.name}</h4>
-            <div><span class="friend-relation-badge">${f.relation}</span></div>
-            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">${f.mutual}</div>
-            <div style="margin-top:6px; display:flex; gap:6px;">
-              <button class="btn btn-outline" style="padding:2px 8px; font-size:11px;" onclick="viewUserProfile('${f.key}')">View Wall</button>
-              <button class="btn btn-secondary" style="padding:2px 8px; font-size:11px;" onclick="alert('Message thread opened with ' + '${f.name}')">Message</button>
-            </div>
-          </div>
-        `;
-        container.appendChild(el);
-      });
+    // Profile Modal
+    function openProfileModal() {
+      document.getElementById('inputFullName').value = currentUser.name;
+      document.getElementById('inputFamilyRole').value = currentUser.role;
+      document.getElementById('inputBio').value = currentUser.bio;
+      document.getElementById('profileModal').classList.add('open');
     }
 
-    function confirmFriendRequest(btn, name) {
-      btn.parentElement.innerHTML = '<span style="font-size:12px; color:var(--primary); font-weight:700;">✓ Kinship Confirmed</span>';
-      const badge = document.getElementById('requestsBadge');
-      if (badge) {
-        let count = parseInt(badge.innerText) - 1;
-        badge.innerText = count > 0 ? count : '';
-        if (count <= 0) badge.style.display = 'none';
-      }
-      alert(`${name} is now connected to your Family Tree and Wall!`);
+    function closeProfileModal() {
+      document.getElementById('profileModal').classList.remove('open');
     }
 
-    function openNewAlbumModal() {
-      const title = prompt('Enter album name (e.g., "Christmas 2026", "Grandkids Summer"):');
-      if (title) {
-        appDB.albums.push({
-          id: 'a_' + Date.now(),
-          title: title,
-          count: '0 photos',
-          cover: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="100%" height="100%" fill="%232d5a43"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="white" font-weight="bold">' + title + '</text></svg>',
-          photos: []
-        });
-        renderAlbums();
+    function saveProfile() {
+      const name = document.getElementById('inputFullName').value.trim() || 'My Name';
+      const role = document.getElementById('inputFamilyRole').value.trim() || 'Family Member';
+      const bio = document.getElementById('inputBio').value.trim() || 'Welcome to our tree';
+
+      currentUser = {
+        name: name,
+        role: role,
+        bio: bio,
+        avatar: name.substring(0, 1).toUpperCase()
+      };
+
+      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(currentUser));
+      closeProfileModal();
+      updateUI();
+    }
+
+    function clearAllData() {
+      if (confirm('Clear all saved posts and reset your Social Tree?')) {
+        localStorage.clear();
+        location.reload();
       }
     }
 
-    // Dropdown toggles
-    function toggleDropdown(id) {
-      const drop = document.getElementById(id);
-      const wasOpen = drop.classList.contains('open');
-      closeAllDropdowns();
-      if (!wasOpen) drop.classList.add('open');
-    }
-
-    function closeAllDropdowns() {
-      document.querySelectorAll('.dropdown-panel').forEach(d => d.classList.remove('open'));
-    }
-
-    window.onclick = function(e) {
-      if (!e.target.closest('.nav-icon-btn') && !e.target.closest('.dropdown-panel')) {
-        closeAllDropdowns();
-      }
-    };
-
-    // Filter feed by audience
-    function filterFeedByAudience(audKey) {
-      alert(`Filtering feed by circle: ${audKey.toUpperCase()}. Only members of this branch can view these posts.`);
-    }
-
-    // Init
+    // Init on load
     window.onload = function() {
-      renderFeedStream();
-      renderAlbums();
-      renderFriends();
+      initData();
     };
   </script>
 </body>
