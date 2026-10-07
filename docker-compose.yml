@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  social-tree:
+    build: .
+    container_name: social_tree_app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - SESSION_SECRET=change_this_to_a_secure_random_string_in_production
+      - SITE_TITLE=Social Tree
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
